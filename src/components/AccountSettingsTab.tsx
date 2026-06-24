@@ -52,6 +52,8 @@ export default function AccountSettingsTab({
 
   // Sesi pendaftaran operator baru oleh Super Admin
   const [newUserName, setNewUserName] = useState('');
+  const [newUserUsername, setNewUserUsername] = useState('');
+  const [newUserPassword, setNewUserPassword] = useState('');
   const [newUserEmail, setNewUserEmail] = useState('');
   const [newUserRole, setNewUserRole] = useState<Role>('KOORDINATOR_TIM');
   const [newUserKategoriAkses, setNewUserKategoriAkses] = useState('403');
@@ -69,16 +71,26 @@ export default function AccountSettingsTab({
       return;
     }
 
+    if (!newUserUsername.trim() || !newUserPassword.trim()) {
+      setUserErrorMsg('Username dan password pengguna tidak boleh kosong.');
+      return;
+    }
+
     if (!newUserEmail.trim() || !newUserEmail.includes('@')) {
       setUserErrorMsg('Harap masukkan alamat email paroki yang valid.');
       return;
     }
 
     const emailLower = newUserEmail.trim().toLowerCase();
+    const usernameLower = newUserUsername.trim().toLowerCase();
     
-    // Validasi duplikasi email
+    // Validasi duplikasi email atau username
     if (users.some(u => u.email.toLowerCase() === emailLower)) {
       setUserErrorMsg('Email tersebut sudah terdaftar di sistem untuk operator lain.');
+      return;
+    }
+    if (users.some(u => (u.username || '').toLowerCase() === usernameLower)) {
+      setUserErrorMsg('Username tersebut sudah digunakan oleh operator lain.');
       return;
     }
 
@@ -86,6 +98,8 @@ export default function AccountSettingsTab({
       id: `usr-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
       name: newUserName.trim(),
       email: emailLower,
+      username: usernameLower,
+      password: newUserPassword.trim(),
       role: newUserRole,
       kategoriAkses: newUserRole === 'KOORDINATOR_TIM' ? newUserKategoriAkses : undefined
     };
@@ -94,6 +108,8 @@ export default function AccountSettingsTab({
     
     // Reset form pendaftaran
     setNewUserName('');
+    setNewUserUsername('');
+    setNewUserPassword('');
     setNewUserEmail('');
     setNewUserRole('KOORDINATOR_TIM');
     setNewUserKategoriAkses('403');
@@ -622,6 +638,38 @@ export default function AccountSettingsTab({
                       placeholder="Contoh: Heribertus Maryono"
                       className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-slate-800 font-medium"
                     />
+                  </div>
+
+                  {/* Username & Password field entry */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-1.5 text-left">
+                      <label className="text-[10px] text-slate-450 uppercase font-bold tracking-wider flex items-center gap-1">
+                        <UserIcon className="w-3.5 h-3.5 text-slate-400" />
+                        Username Login
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={newUserUsername}
+                        onChange={(e) => setNewUserUsername(e.target.value)}
+                        placeholder="Contoh: heri123"
+                        className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-slate-800 font-medium font-mono"
+                      />
+                    </div>
+                    <div className="space-y-1.5 text-left">
+                      <label className="text-[10px] text-slate-450 uppercase font-bold tracking-wider flex items-center gap-1">
+                        <Lock className="w-3.5 h-3.5 text-slate-400" />
+                        Password
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={newUserPassword}
+                        onChange={(e) => setNewUserPassword(e.target.value)}
+                        placeholder="Password kuat"
+                        className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-slate-800 font-medium font-mono"
+                      />
+                    </div>
                   </div>
 
                   {/* Email field entry */}

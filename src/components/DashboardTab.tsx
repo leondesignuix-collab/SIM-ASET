@@ -169,32 +169,6 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
 
   return (
     <div id="dashboard-container" className="space-y-6">
-      {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 text-white rounded-xl p-5 border border-slate-800 shadow-md relative overflow-hidden">
-        <div className="absolute right-0 top-0 -mt-4 -mr-4 w-40 h-40 bg-primary-500/10 rounded-full blur-2xl"></div>
-        <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="bg-primary-500/20 text-primary-400 text-[10px] px-2 py-0.5 rounded-full font-mono font-medium tracking-wider uppercase">PAROKI SANTO YOHANES RASUL PRINGWULUNG</span>
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
-              </span>
-            </div>
-            <h2 className="text-xl font-bold font-display tracking-tight text-white">SIM Aset & Inventaris Gereja</h2>
-            <p className="text-xs text-slate-300 max-w-xl">
-              Sistem Penatausahaan secara transparan untuk melacak, menghitung depresiasi, dan memantau status fisik 17.000+ aset paroki. [1, 2, 10]
-            </p>
-          </div>
-          <div className="flex flex-col items-end bg-slate-950/40 backdrop-blur-md px-4 py-2 border border-slate-800 rounded-lg shrink-0">
-            <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Total Nilai Buku (Est)</span>
-            <span className="text-xl font-bold text-primary-400 font-mono tracking-tight">
-              {formatRupiah(stats.totalBookValue)}
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Summary KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Total Units */}
