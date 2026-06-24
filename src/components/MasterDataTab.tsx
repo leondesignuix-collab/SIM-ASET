@@ -24,8 +24,11 @@ import {
   MapPin,
   Compass,
   Briefcase,
-  Tag
+  Tag,
+  Users
 } from 'lucide-react';
+
+import { BIDANG_MAP } from '../types';
 
 interface MasterDataTabProps {
   currentUser: User;
@@ -41,6 +44,8 @@ interface MasterDataTabProps {
   setPeruntukanMap: React.Dispatch<React.SetStateAction<Record<string, string>>>;
   kodeNamaBarangMap: Record<string, string>;
   setKodeNamaBarangMap: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+  bidangMap: Record<string, string>;
+  setBidangMap: React.Dispatch<React.SetStateAction<Record<string, string>>>;
 }
 
 export default function MasterDataTab({
@@ -56,10 +61,12 @@ export default function MasterDataTab({
   peruntukanMap,
   setPeruntukanMap,
   kodeNamaBarangMap,
-  setKodeNamaBarangMap
+  setKodeNamaBarangMap,
+  bidangMap,
+  setBidangMap
 }: MasterDataTabProps) {
   // Navigation tabs for the Master Data categories
-  const [subTab, setSubTab] = useState<'jenis' | 'teritori' | 'ruang' | 'peruntukan' | 'kodeBarang'>('jenis');
+  const [subTab, setSubTab] = useState<'jenis' | 'teritori' | 'ruang' | 'peruntukan' | 'kodeBarang' | 'bidang'>('jenis');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Editor form states
@@ -83,6 +90,7 @@ export default function MasterDataTab({
       case 'teritori': return teritoriMap;
       case 'peruntukan': return peruntukanMap;
       case 'kodeBarang': return kodeNamaBarangMap;
+      case 'bidang': return bidangMap;
     }
   })();
 
@@ -93,6 +101,7 @@ export default function MasterDataTab({
       case 'teritori': return setTeritoriMap;
       case 'peruntukan': return setPeruntukanMap;
       case 'kodeBarang': return setKodeNamaBarangMap;
+      case 'bidang': return setBidangMap;
     }
   })();
 
@@ -103,6 +112,7 @@ export default function MasterDataTab({
       case 'teritori': return TERITORI_MAP;
       case 'peruntukan': return PERUNTUKAN_MAP;
       case 'kodeBarang': return KODE_NAMA_BARANG_MAP;
+      case 'bidang': return BIDANG_MAP;
     }
   })();
 
@@ -113,6 +123,7 @@ export default function MasterDataTab({
       case 'ruang': return 'Level 5: Letak Ruang';
       case 'peruntukan': return 'Level 4: Peruntukan';
       case 'kodeBarang': return 'Level 7: Kode Nama Barang';
+      case 'bidang': return 'Bidang / Fungsi Terkoordinasi';
     }
   })();
 
@@ -123,6 +134,7 @@ export default function MasterDataTab({
       case 'teritori': return <Compass className="w-4 h-4 text-primary-600 font-bold" />;
       case 'peruntukan': return <Briefcase className="w-4 h-4 text-primary-600 font-bold" />;
       case 'kodeBarang': return <Tag className="w-4 h-4 text-primary-600 font-bold" />;
+      case 'bidang': return <Users className="w-4 h-4 text-primary-600 font-bold" />;
     }
   };
 
@@ -135,6 +147,7 @@ export default function MasterDataTab({
         case 'teritori': return asset.teritori === code;
         case 'peruntukan': return asset.peruntukan === code;
         case 'kodeBarang': return asset.kodeNamaBarang === code;
+        case 'bidang': return asset.bidang === code;
         default: return false;
       }
     }).length;
@@ -213,6 +226,7 @@ export default function MasterDataTab({
       if (subTab === 'teritori') return asset.teritori === targetCodeForFilter;
       if (subTab === 'peruntukan') return asset.peruntukan === targetCodeForFilter;
       if (subTab === 'kodeBarang') return asset.kodeNamaBarang === targetCodeForFilter;
+      if (subTab === 'bidang') return asset.bidang === targetCodeForFilter;
       return false;
     });
     const syncCount = matchingAssets.length;
@@ -239,6 +253,9 @@ export default function MasterDataTab({
             isAssetDirty = true;
           } else if (subTab === 'kodeBarang' && asset.kodeNamaBarang === editingCode) {
             nextAsset.kodeNamaBarang = codeClean;
+            isAssetDirty = true;
+          } else if (subTab === 'bidang' && asset.bidang === editingCode) {
+            nextAsset.bidang = codeClean;
             isAssetDirty = true;
           }
 
@@ -267,7 +284,8 @@ export default function MasterDataTab({
           (subTab === 'ruang' && asset.letakRuang === (editingCode || codeClean)) ||
           (subTab === 'teritori' && asset.teritori === (editingCode || codeClean)) ||
           (subTab === 'peruntukan' && asset.peruntukan === (editingCode || codeClean)) ||
-          (subTab === 'kodeBarang' && asset.kodeNamaBarang === (editingCode || codeClean));
+          (subTab === 'kodeBarang' && asset.kodeNamaBarang === (editingCode || codeClean)) ||
+          (subTab === 'bidang' && asset.bidang === (editingCode || codeClean));
 
         if (belongsToMaster) {
           nextAsset.updatedAt = new Date().toISOString();
@@ -416,6 +434,18 @@ export default function MasterDataTab({
         >
           <Tag className="w-3.5 h-3.5" />
           <span className="hidden sm:inline">Level 7: </span>Nama Barang
+        </button>
+
+        <button
+          onClick={() => { setSubTab('bidang'); handleCancelForm(); }}
+          className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 py-3 rounded-lg text-[11px] font-bold uppercase transition cursor-pointer ${
+            subTab === 'bidang' 
+              ? 'bg-primary-600 text-white shadow-sm' 
+              : 'text-slate-500 hover:text-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800'
+          }`}
+        >
+          <Users className="w-3.5 h-3.5" />
+          <span className="hidden sm:inline"></span>Bidang Terkoordinasi
         </button>
       </div>
 

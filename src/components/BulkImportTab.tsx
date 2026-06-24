@@ -279,12 +279,15 @@ export default function BulkImportTab({
           
           const rawKodeNamaBarang = getFlexibleValue(row, ['kodeNamaBarang', 'kodeBarang', 'kodeNama', 'itemCode', 'barangKode', 'kodetipe', 'tipe']) || parsedKodeNamaBarang;
           const rawNoUrutSejenis = getFlexibleValue(row, ['noUrutSejenis', 'noUrut', 'urut', 'sequenceNumber', 'seq', 'nomorurut']);
+          const rawBidang = getFlexibleValue(row, ['bidang', 'fungsi', 'bidangTerkoordinasi', 'fungsiTerkoordinasi', 'kategoriBidang']);
 
           // Standardize Segments Codes against master lists
           const jenisAset = reverseLookup(jenisAsetMap || JENIS_ASET_MAP, rawJenisAset, '403');
           const teritori = reverseLookup(teritoriMap || TERITORI_MAP, rawTeritori, '01');
           const peruntukan = reverseLookup(peruntukanMap || PERUNTUKAN_MAP, rawPeruntukan, '01');
           const letakRuang = reverseLookup(letakRuangMap || LETAK_RUANG_MAP, rawLetakRuang, '02');
+          
+          const bidang = rawBidang ? String(rawBidang).trim() : '';
           
           const kodeNamaBarang = rawKodeNamaBarang ? String(rawKodeNamaBarang).trim() : '1';
           let noUrutSejenis = rawNoUrutSejenis ? String(rawNoUrutSejenis).trim() : '001';
@@ -359,6 +362,7 @@ export default function BulkImportTab({
             nilaiBuku: depr.nilaiBuku,
             biayaPenyusutan: depr.biayaPenyusutan,
             kondisiBarang: kondisiBarang as any,
+            bidang: bidang,
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
             maintenanceLogs: [],

@@ -65,6 +65,7 @@ export interface Asset {
   nilaiBuku: number;
   biayaPenyusutan: number;
   kondisiBarang: KondisiBarang;
+  bidang?: string;
   createdAt: string;
   updatedAt: string;
 
@@ -85,6 +86,15 @@ export interface DashboardStats {
 }
 
 // Map Indonesian descriptive labels to codes
+export const BIDANG_MAP: Record<string, string> = {
+  "BDG-01": "Bidang Liturgi",
+  "BDG-02": "Bidang Pewartaan",
+  "BDG-03": "Bidang Paguyuban",
+  "BDG-04": "Bidang Kemasyarakatan",
+  "BDG-05": "Tim Aset & Pemeliharaan",
+  "BDG-06": "Sekretariat Paroki"
+};
+
 export const JENIS_ASET_MAP: Record<string, string> = {
   "100": "Tanah & Bangunan Utama",
   "401": "Bangunan Gereja & Kapel",

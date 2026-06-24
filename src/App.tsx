@@ -18,7 +18,8 @@ import {
   LETAK_RUANG_MAP,
   TERITORI_MAP,
   PERUNTUKAN_MAP,
-  KODE_NAMA_BARANG_MAP
+  KODE_NAMA_BARANG_MAP,
+  BIDANG_MAP
 } from './types';
 import {
   getAllAssetsFromFirebase,
@@ -197,6 +198,14 @@ export default function App() {
     const cached = localStorage.getItem('sim_aset_paroki_kode_nama_barang');
     return cached ? JSON.parse(cached) : KODE_NAMA_BARANG_MAP;
   });
+  const [bidangMap, setBidangMap] = useState<Record<string, string>>(() => {
+    const cached = localStorage.getItem('sim_aset_paroki_bidang');
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (Object.keys(parsed).length > 0) return parsed;
+    }
+    return BIDANG_MAP;
+  });
 
   // 1. Persist to localStorage whenever assets modify
   useEffect(() => {
@@ -223,6 +232,10 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('sim_aset_paroki_kode_nama_barang', JSON.stringify(kodeNamaBarangMap));
   }, [kodeNamaBarangMap]);
+
+  useEffect(() => {
+    localStorage.setItem('sim_aset_paroki_bidang', JSON.stringify(bidangMap));
+  }, [bidangMap]);
 
   useEffect(() => {
     localStorage.setItem('sim_aset_registered_users', JSON.stringify(users));
@@ -757,6 +770,7 @@ export default function App() {
               teritoriMap={teritoriMap}
               peruntukanMap={peruntukanMap}
               kodeNamaBarangMap={kodeNamaBarangMap}
+              bidangMap={bidangMap}
             />
           )}
 
@@ -801,6 +815,8 @@ export default function App() {
               setPeruntukanMap={setPeruntukanMap}
               kodeNamaBarangMap={kodeNamaBarangMap}
               setKodeNamaBarangMap={setKodeNamaBarangMap}
+              bidangMap={bidangMap}
+              setBidangMap={setBidangMap}
             />
           )}
 
@@ -808,7 +824,7 @@ export default function App() {
             <AccountSettingsTab
               currentUser={currentUser}
               onUpdateCurrentUser={handleUpdateCurrentUser}
-              jenisAsetMap={jenisAsetMap}
+              bidangMap={bidangMap}
               users={users}
               onAddUser={handleAddUser}
               onDeleteUser={handleDeleteUser}
@@ -839,6 +855,7 @@ export default function App() {
           teritoriMap={teritoriMap}
           peruntukanMap={peruntukanMap}
           kodeNamaBarangMap={kodeNamaBarangMap}
+          bidangMap={bidangMap}
         />
       )}
 

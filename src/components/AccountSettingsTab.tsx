@@ -26,7 +26,7 @@ import {
 interface AccountSettingsTabProps {
   currentUser: User;
   onUpdateCurrentUser: (updatedUser: User) => void;
-  jenisAsetMap: Record<string, string>;
+  bidangMap: Record<string, string>;
   users: User[];
   onAddUser: (newUser: User) => void;
   onDeleteUser: (userId: string) => void;
@@ -36,7 +36,7 @@ interface AccountSettingsTabProps {
 export default function AccountSettingsTab({
   currentUser,
   onUpdateCurrentUser,
-  jenisAsetMap,
+  bidangMap,
   users = [],
   onAddUser,
   onDeleteUser,
@@ -45,7 +45,7 @@ export default function AccountSettingsTab({
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
   const [role, setRole] = useState<Role>(currentUser.role);
-  const [kategoriAkses, setKategoriAkses] = useState(currentUser.kategoriAkses || '403');
+  const [kategoriAkses, setKategoriAkses] = useState(currentUser.kategoriAkses || Object.keys(bidangMap)[0] || '');
   
   const [successMsg, setSuccessMsg] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -56,7 +56,7 @@ export default function AccountSettingsTab({
   const [newUserPassword, setNewUserPassword] = useState('');
   const [newUserEmail, setNewUserEmail] = useState('');
   const [newUserRole, setNewUserRole] = useState<Role>('KOORDINATOR_TIM');
-  const [newUserKategoriAkses, setNewUserKategoriAkses] = useState('403');
+  const [newUserKategoriAkses, setNewUserKategoriAkses] = useState(Object.keys(bidangMap)[0] || '');
   const [userSuccessMsg, setUserSuccessMsg] = useState('');
   const [userErrorMsg, setUserErrorMsg] = useState('');
   const [deleteUserRef, setDeleteUserRef] = useState<{ id: string; name: string } | null>(null);
@@ -112,7 +112,7 @@ export default function AccountSettingsTab({
     setNewUserPassword('');
     setNewUserEmail('');
     setNewUserRole('KOORDINATOR_TIM');
-    setNewUserKategoriAkses('403');
+    setNewUserKategoriAkses(Object.keys(bidangMap)[0] || '');
     
     setUserSuccessMsg(`✓ Pengguna "${newUser.name}" berhasil didaftarkan sebagai operator paroki!`);
     setTimeout(() => {
@@ -463,7 +463,7 @@ export default function AccountSettingsTab({
                     onChange={(e) => setKategoriAkses(e.target.value)}
                     className="w-full text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg px-2.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary-500 cursor-pointer"
                   >
-                    {Object.entries(jenisAsetMap).map(([code, name]) => (
+                    {Object.entries(bidangMap).map(([code, name]) => (
                       <option key={code} value={code}>[{code}] {name}</option>
                     ))}
                   </select>
@@ -586,7 +586,7 @@ export default function AccountSettingsTab({
 
                                 {u.role === 'KOORDINATOR_TIM' && u.kategoriAkses && (
                                   <div className="text-[10px] font-medium text-slate-500 pl-1 leading-snug">
-                                    Fungsi: <strong className="font-mono text-slate-650 font-bold">[{u.kategoriAkses}] {jenisAsetMap[u.kategoriAkses] || u.kategoriAkses}</strong>
+                                    Fungsi: <strong className="font-mono text-slate-650 font-bold">[{u.kategoriAkses}] {bidangMap[u.kategoriAkses] || u.kategoriAkses}</strong>
                                   </div>
                                 )}
                               </div>
@@ -770,7 +770,7 @@ export default function AccountSettingsTab({
                         onChange={(e) => setNewUserKategoriAkses(e.target.value)}
                         className="w-full text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary-500"
                       >
-                        {Object.entries(jenisAsetMap).map(([code, catName]) => (
+                        {Object.entries(bidangMap).map(([code, catName]) => (
                           <option key={code} value={code}>[{code}] {catName}</option>
                         ))}
                       </select>

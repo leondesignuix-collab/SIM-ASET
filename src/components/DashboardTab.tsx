@@ -261,8 +261,8 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
           </div>
         </div>
 
-        {/* 2-Column Grid: Kondisi Fisik Barang & Tren Registrasi Aset Baru */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* 3-Column Grid: Kondisi Fisik Barang, Nilai Aset per Kategori & Tren Registrasi Aset Baru */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Column 1: Pie Chart Kondisi Fisik */}
           <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
@@ -318,7 +318,59 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
             </div>
           </div>
 
-          {/* Column 2: 📈 Tren Nilai Buku Aset 12 Bulan Terakhir */}
+          {/* Column 2: Pie Chart Komposisi Nilai Aset per Kategori */}
+          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Komposisi Nilai Aset</h3>
+              <p className="text-xs text-slate-400 mb-4">Proporsi total nilai buku berdasarkan kategori</p>
+            </div>
+            <div className="h-44 flex items-center justify-center relative my-3">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={stats.categoryDistribution.filter(c => c.bookValue > 0)}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={55}
+                    outerRadius={75}
+                    paddingAngle={3}
+                    dataKey="bookValue"
+                    nameKey="category"
+                    stroke="none"
+                    cornerRadius={4}
+                  >
+                    {stats.categoryDistribution.filter(c => c.bookValue > 0).map((entry, index) => (
+                      <Cell 
+                        key={entry.category} 
+                        fill={['#0031f6', '#3b82f6', '#0ea5e9', '#06b6d4', '#14b8a6', '#10b981', '#8b5cf6', '#a855f7', '#f43f5e', '#f59e0b'][index % 10]} 
+                      />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    formatter={(value: any) => [formatRupiah(value), 'Nilai Buku']}
+                    contentStyle={{ background: '#0f172a', border: 'none', borderRadius: '8px', color: '#fff' }}
+                    itemStyle={{ color: '#fff' }}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+            <div className="space-y-2 mt-2 pt-2 border-t border-slate-100 max-h-32 overflow-y-auto">
+              {stats.categoryDistribution.filter(c => c.bookValue > 0).sort((a,b) => b.bookValue - a.bookValue).slice(0, 4).map((item, index) => {
+                const percentage = stats.totalBookValue > 0 ? ((item.bookValue / stats.totalBookValue) * 100).toFixed(1) : '0';
+                return (
+                  <div key={item.category} className="flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-2 max-w-[70%]">
+                      <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: ['#0031f6', '#3b82f6', '#0ea5e9', '#06b6d4', '#14b8a6', '#10b981', '#8b5cf6', '#a855f7', '#f43f5e', '#f59e0b'][index % 10] }}></span>
+                      <span className="text-slate-600 font-medium truncate" title={item.category}>{item.category}</span>
+                    </div>
+                    <span className="font-semibold text-slate-800 font-mono">{percentage}%</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Column 3: 📈 Tren Nilai Buku Aset 12 Bulan Terakhir */}
           <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
             <div>
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">

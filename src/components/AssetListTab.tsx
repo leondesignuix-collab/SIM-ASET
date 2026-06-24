@@ -52,6 +52,7 @@ interface AssetListTabProps {
   teritoriMap?: Record<string, string>;
   peruntukanMap?: Record<string, string>;
   kodeNamaBarangMap?: Record<string, string>;
+  bidangMap?: Record<string, string>;
 }
 
 export default function AssetListTab({
@@ -66,13 +67,15 @@ export default function AssetListTab({
   letakRuangMap,
   teritoriMap,
   peruntukanMap,
-  kodeNamaBarangMap
+  kodeNamaBarangMap,
+  bidangMap
 }: AssetListTabProps) {
   const jMap = jenisAsetMap || JENIS_ASET_MAP;
   const lMap = letakRuangMap || LETAK_RUANG_MAP;
   const tMap = teritoriMap || TERITORI_MAP;
   const pMap = peruntukanMap || PERUNTUKAN_MAP;
   const kMap = kodeNamaBarangMap || KODE_NAMA_BARANG_MAP;
+  const bMap = bidangMap || {};
 
   // Filters state
   const [searchTerm, setSearchTerm] = useState('');
@@ -122,19 +125,20 @@ export default function AssetListTab({
     kodeNamaBarang: '1',
     umurManfaat: 5,
     nilaiResidu: 0,
-    kondisiBarang: 'BAIK' as KondisiBarang
+    kondisiBarang: 'BAIK' as KondisiBarang,
+    bidang: ''
   });
 
   // Check user permission
-  const checkPermission = (assetJenisAset: string) => {
+  const checkPermission = (assetBidang: string | undefined) => {
     if (currentUser.role === 'SUPER_ADMIN') return { permitted: true };
     if (currentUser.role === 'KOORDINATOR_TIM') {
-      const isPermitted = currentUser.kategoriAkses === assetJenisAset;
+      const isPermitted = currentUser.kategoriAkses === assetBidang;
       return { 
         permitted: isPermitted, 
         message: isPermitted 
           ? '' 
-          : `Terkunci: Anda koordinator Kategori [${currentUser.kategoriAkses}], tidak dapat merubah aset Kategori [${assetJenisAset}]` 
+          : `Terkunci: Anda koordinator Bidang [${bMap[currentUser.kategoriAkses || ''] || currentUser.kategoriAkses}], tidak dapat merubah aset Bidang [${bMap[assetBidang || ''] || assetBidang || 'Kosong'}]` 
       };
     }
     return { permitted: false, message: 'Terkunci: Petugas Viewer tidak memiliki hak mengubah data.' };
@@ -220,7 +224,7 @@ export default function AssetListTab({
   };
 
   const handleOpenEditForm = (asset: Asset) => {
-    const perm = checkPermission(asset.jenisAset);
+    const perm = checkPermission(asset.bidang);
     if (!perm.permitted) {
       setPermissionErrorMsg(perm.message || 'Anda tidak diizinkan mengubah aset ini.');
       return;
@@ -241,7 +245,8 @@ export default function AssetListTab({
       kodeNamaBarang: asset.kodeNamaBarang,
       umurManfaat: asset.umurManfaat,
       nilaiResidu: Number(asset.nilaiResidu),
-      kondisiBarang: asset.kondisiBarang
+      kondisiBarang: asset.kondisiBarang,
+      bidang: asset.bidang || ''
     });
     setEditingId(asset.id);
     setIsEditing(true);
@@ -257,7 +262,7 @@ export default function AssetListTab({
       return;
     }
 
-    const { permitted, message } = checkPermission(formData.jenisAset);
+    const { permitted, message } = checkPermission(formData.bidang);
     if (!permitted) {
       setFormErrorMsg(message || "Anda tidak memiliki wewenang menyimpan aset untuk kategori ini.");
       return;
@@ -309,6 +314,7 @@ export default function AssetListTab({
         nilaiBuku: depr.nilaiBuku,
         biayaPenyusutan: depr.biayaPenyusutan,
         kondisiBarang: formData.kondisiBarang,
+        bidang: formData.bidang,
         updatedAt: new Date().toISOString()
       };
       onUpdateAsset(updated);
@@ -339,6 +345,7 @@ export default function AssetListTab({
         nilaiBuku: depr.nilaiBuku,
         biayaPenyusutan: depr.biayaPenyusutan,
         kondisiBarang: formData.kondisiBarang,
+        bidang: formData.bidang,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         maintenanceLogs: [],
@@ -353,7 +360,7 @@ export default function AssetListTab({
   };
 
   const handleDelete = (asset: Asset) => {
-    const perm = checkPermission(asset.jenisAset);
+    const perm = checkPermission(asset.bidang);
     if (!perm.permitted) {
       setPermissionErrorMsg(perm.message || 'Anda tidak diizinkan menghapus aset ini.');
       return;
@@ -394,7 +401,7 @@ export default function AssetListTab({
     const locked: Asset[] = [];
     
     selectedAssets.forEach(asset => {
-      const perm = checkPermission(asset.jenisAset);
+      const perm = checkPermission(asset.bidang);
       if (perm.permitted) {
         deletable.push(asset);
       } else {
@@ -815,11 +822,18 @@ export default function AssetListTab({
                         >
                           {asset.uraian}
                         </div>
-                        <div className="text-[10px] text-slate-500 font-medium mt-0.5 flex flex-wrap items-center gap-1.5">
-                          <span className="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono text-[9px]">{asset.letakRuang}</span>
-                          <span>{rLabel}</span>
-                          <span className="text-slate-300">|</span>
-                          <span className="text-slate-400 shrink-0">({cLabel})</span>
+                        <div className="text-[10px] text-slate-500 font-medium mt-0.5 flex flex-col gap-1">
+                          <div className="flex flex-wrap items-center gap-1.5">
+                            <span className="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono text-[9px]">{asset.letakRuang}</span>
+                            <span>{rLabel}</span>
+                            <span className="text-slate-300">|</span>
+                            <span className="text-slate-400 shrink-0">({cLabel})</span>
+                          </div>
+                          {asset.bidang && (
+                            <div className="text-[10px] text-slate-500 truncate" title={bMap[asset.bidang] || asset.bidang}>
+                              <span className="font-bold text-slate-600">Bidang:</span> {bMap[asset.bidang] || asset.bidang}
+                            </div>
+                          )}
                         </div>
                       </td>
 
@@ -1056,6 +1070,22 @@ export default function AssetListTab({
                   onChange={(e) => setFormData({...formData, uraian: e.target.value})}
                   className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500"
                 />
+              </div>
+
+              {/* Bidang / Fungsi Terkoordinasi */}
+              <div className="space-y-1">
+                <label className="text-xs text-slate-500 font-bold block uppercase tracking-wide">Bidang / Fungsi Terkoordinasi</label>
+                <span className="text-[10px] text-slate-400 block -mt-1">Bidang yang menaungi aset (Opsional, contoh: Liturgi, Pewartaan).</span>
+                <select
+                  value={formData.bidang}
+                  onChange={(e) => setFormData({...formData, bidang: e.target.value})}
+                  className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white"
+                >
+                  <option value="">- Tanpa Bidang Khusus -</option>
+                  {Object.entries(bMap).map(([code, name]) => (
+                    <option key={code} value={code}>[{code}] {name}</option>
+                  ))}
+                </select>
               </div>
 
               {/* Level 1 & Level 5: Jenis Aset & Letak Ruang */}

@@ -41,6 +41,7 @@ interface AssetModalProps {
   teritoriMap?: Record<string, string>;
   peruntukanMap?: Record<string, string>;
   kodeNamaBarangMap?: Record<string, string>;
+  bidangMap?: Record<string, string>;
 }
 
 export default function AssetModal({ 
@@ -50,7 +51,8 @@ export default function AssetModal({
   letakRuangMap,
   teritoriMap,
   peruntukanMap,
-  kodeNamaBarangMap
+  kodeNamaBarangMap,
+  bidangMap
 }: AssetModalProps) {
   if (!asset) return null;
 
@@ -164,12 +166,14 @@ export default function AssetModal({
 
     ctx.fillStyle = '#475569';
     ctx.font = 'bold 10px "Inter", sans-serif';
-    ctx.fillText('KLASIFIKASI & TANGGAL:', 392, y);
+    ctx.fillText('KLASIFIKASI & BIDANG:', 392, y);
     ctx.fillStyle = '#1e293b';
     ctx.font = '500 12px "Inter", sans-serif';
     const catText = `${jMap[asset.jenisAset] || 'Aset'}`;
     const truncatedCat = catText.length > 20 ? catText.slice(0, 18) + '..' : catText;
-    ctx.fillText(`${truncatedCat} - ${asset.tanggalPerolehan}`, 392, y + 14);
+    const bidangText = asset.bidang ? (bidangMap?.[asset.bidang] || asset.bidang) : `Beli: ${asset.tanggalPerolehan}`;
+    const truncatedBidang = bidangText.length > 20 ? bidangText.slice(0, 18) + '..' : bidangText;
+    ctx.fillText(`${truncatedCat} - ${truncatedBidang}`, 392, y + 14);
 
     const pngUrl = canvas.toDataURL("image/png");
     const downloadLink = document.createElement("a");
@@ -328,9 +332,9 @@ export default function AssetModal({
                     <span style="color: #64748b; font-size: 10px;">${tMap[asset.teritori] || asset.teritori}</span>
                   </div>
                   <div class="meta-item">
-                    <span class="meta-label">Klasifikasi & Tanggal</span>
+                    <span class="meta-label">Klasifikasi & Bidang</span>
                     <strong>${jMap[asset.jenisAset] || 'Aset'}</strong><br/>
-                    <span style="color: #64748b; font-size: 10px;">Beli: ${asset.tanggalPerolehan}</span>
+                    <span style="color: #64748b; font-size: 10px;">${asset.bidang ? (bidangMap?.[asset.bidang] || asset.bidang) : `Beli: ${asset.tanggalPerolehan}`}</span>
                   </div>
                 </div>
               </div>
@@ -479,6 +483,16 @@ export default function AssetModal({
             <span className="font-bold text-slate-700 uppercase tracking-wide block">Hierarki Segmentasi Lokasi & Fungsi</span>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-xs">
+              {asset.bidang && (
+                <div className="flex items-center gap-1.5 sm:col-span-2 bg-indigo-50/50 p-2 rounded-lg border border-indigo-100/50">
+                  <Activity className="w-4 h-4 text-indigo-400 shrink-0" />
+                  <div>
+                    <span className="text-indigo-400 text-[10px] block font-semibold uppercase leading-none">Bidang / Fungsi Terkoordinasi</span>
+                    <span className="text-indigo-700 font-bold leading-normal">[{asset.bidang}] {bidangMap?.[asset.bidang] || asset.bidang}</span>
+                  </div>
+                </div>
+              )}
+
               <div className="flex items-center gap-1.5">
                 <Compass className="w-4 h-4 text-slate-400 shrink-0" />
                 <div>
