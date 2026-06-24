@@ -544,7 +544,7 @@ export default function BulkImportTab({
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
           <div>
             <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
+              <ShieldCheck className="w-4 h-4 text-primary-600" />
               Konfigurasi Penyelarasan & Sinkronisasi Data
             </h4>
             <p className="text-[11px] text-slate-500 mt-0.5">
@@ -667,7 +667,7 @@ export default function BulkImportTab({
           <div id="bulk-import-status" className="mt-6 p-5 rounded-2xl bg-slate-50 border border-slate-100 space-y-4 animate-fade-in text-xs">
             <div className="flex items-center justify-between border-b pb-2">
               <h4 className="font-bold text-slate-700 uppercase tracking-widest flex items-center gap-1.5">
-                <ShieldCheck className="w-4.5 h-4.5 text-emerald-500" />
+                <ShieldCheck className="w-4.5 h-4.5 text-primary-500" />
                 Laporan Hasil Impor Data Inventaris
               </h4>
               <span className="text-[10px] text-slate-400 font-mono">
@@ -676,12 +676,12 @@ export default function BulkImportTab({
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 flex items-center gap-3">
-                <CheckCircle className="w-8 h-8 text-emerald-500 shrink-0" />
+              <div className="bg-primary-50/50 p-4 rounded-xl border border-primary-100 flex items-center gap-3">
+                <CheckCircle className="w-8 h-8 text-primary-500 shrink-0" />
                 <div>
-                  <span className="text-[10px] text-emerald-600 font-bold uppercase block">Berhasil Diimpor</span>
-                  <span className="text-xl font-bold font-mono text-emerald-800">{results.success} unit</span>
-                  <p className="text-[10px] text-emerald-700 mt-0.5">Nilai buku & Seri-Final terbuat sempurna.</p>
+                  <span className="text-[10px] text-primary-600 font-bold uppercase block">Berhasil Diimpor</span>
+                  <span className="text-xl font-bold font-mono text-primary-800">{results.success} unit</span>
+                  <p className="text-[10px] text-primary-700 mt-0.5">Nilai buku & Seri-Final terbuat sempurna.</p>
                 </div>
               </div>
 
@@ -718,7 +718,7 @@ export default function BulkImportTab({
                           <td className="px-4 py-2">{it.tanggalPerolehan}</td>
                           <td className="px-4 py-2 font-mono">{it.hargaPembelian.toLocaleString('id-ID')}</td>
                           <td className="px-4 py-2">
-                            <span className="bg-emerald-50 text-emerald-700 text-[9px] px-1.5 py-0.5 rounded font-bold uppercase">
+                            <span className="bg-primary-50 text-primary-700 text-[9px] px-1.5 py-0.5 rounded font-bold uppercase">
                               {it.kondisiBarang}
                             </span>
                           </td>
@@ -753,8 +753,8 @@ export default function BulkImportTab({
           <div>[INFO] Waiting in local listener for file events. Handler active.</div>
           {results && (
             <>
-              <div className="text-emerald-400">[PARSER] Excel parsed rows successfully: {results.items.length + results.failed} items found.</div>
-              <div className="text-emerald-400">[DB] Appended {results.success} elements into state. State size: {assetsLength} items.</div>
+              <div className="text-primary-400">[PARSER] Excel parsed rows successfully: {results.items.length + results.failed} items found.</div>
+              <div className="text-primary-400">[DB] Appended {results.success} elements into state. State size: {assetsLength} items.</div>
               <div>[INFO] Recalculating Straight-line book values using days resolution coeff 365.25 [10]. Done.</div>
             </>
           )}

@@ -161,7 +161,7 @@ export default function AccountSettingsTab({
   const getRoleBadgeClasses = (r: Role) => {
     switch (r) {
       case 'SUPER_ADMIN':
-        return 'bg-emerald-50 text-emerald-800 border-emerald-200';
+        return 'bg-primary-50 text-primary-800 border-primary-200';
       case 'KOORDINATOR_TIM':
         return 'bg-amber-50 text-amber-800 border-amber-200';
       case 'PETUGAS_VIEWER':
@@ -175,7 +175,7 @@ export default function AccountSettingsTab({
       {/* Tab Banner Header */}
       <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200">
         <h2 className="text-sm font-bold text-slate-800 uppercase tracking-widest flex items-center gap-1.5">
-          <Sliders className="w-4.5 h-4.5 text-emerald-650" />
+          <Sliders className="w-4.5 h-4.5 text-primary-650" />
           Pengaturan Akun Operator Sesi
         </h2>
         <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -184,8 +184,8 @@ export default function AccountSettingsTab({
       </div>
 
       {successMsg && (
-        <div className="bg-emerald-50 text-emerald-800 p-4 border border-emerald-100 rounded-xl text-xs flex items-center gap-2 animate-fade-in font-semibold">
-          <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+        <div className="bg-primary-50 text-primary-800 p-4 border border-primary-100 rounded-xl text-xs flex items-center gap-2 animate-fade-in font-semibold">
+          <ShieldCheck className="w-5 h-5 text-primary-600 shrink-0" />
           {successMsg}
         </div>
       )}
@@ -205,7 +205,7 @@ export default function AccountSettingsTab({
           {/* Visual Profile Avatar Box */}
           <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 text-center space-y-4">
             <div className="relative inline-block">
-              <div className="w-20 h-20 bg-emerald-600 rounded-full flex items-center justify-center text-white text-3xl font-extrabold shadow-md mx-auto tracking-wide ring-4 ring-emerald-50 text-center select-none">
+              <div className="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center text-white text-3xl font-extrabold shadow-md mx-auto tracking-wide ring-4 ring-primary-50 text-center select-none">
                 {initial}
               </div>
               <span className={`absolute bottom-0 right-0 border px-1.5 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider shadow-sm ${getRoleBadgeClasses(currentUser.role)}`}>
@@ -224,7 +224,7 @@ export default function AccountSettingsTab({
               <div className="space-y-2 text-xs">
                 <div className="flex items-center gap-2">
                   {currentUser.role !== 'PETUGAS_VIEWER' ? (
-                    <span className="w-4.5 h-4.5 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-[10px]">✓</span>
+                    <span className="w-4.5 h-4.5 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center font-bold text-[10px]">✓</span>
                   ) : (
                     <span className="w-4.5 h-4.5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-[10px]">✕</span>
                   )}
@@ -235,7 +235,7 @@ export default function AccountSettingsTab({
 
                 <div className="flex items-center gap-2">
                   {currentUser.role === 'SUPER_ADMIN' ? (
-                    <span className="w-4.5 h-4.5 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-[10px]">✓</span>
+                    <span className="w-4.5 h-4.5 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center font-bold text-[10px]">✓</span>
                   ) : (
                     <span className="w-4.5 h-4.5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-[10px]">✕</span>
                   )}
@@ -246,7 +246,7 @@ export default function AccountSettingsTab({
 
                 <div className="flex items-center gap-2">
                   {currentUser.role === 'SUPER_ADMIN' ? (
-                    <span className="w-4.5 h-4.5 rounded-full bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold text-[10px]">✓</span>
+                    <span className="w-4.5 h-4.5 rounded-full bg-primary-50 text-primary-700 flex items-center justify-center font-bold text-[10px]">✓</span>
                   ) : (
                     <span className="w-4.5 h-4.5 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold text-[10px]">✕</span>
                   )}
@@ -273,7 +273,7 @@ export default function AccountSettingsTab({
           <div className="bg-slate-900 border border-slate-800 shadow-sm rounded-xl p-5 text-xs text-slate-300 font-mono space-y-3">
             <div className="font-bold text-white text-[10px] tracking-wider uppercase flex items-center gap-1.5 border-b border-slate-800 pb-2 justify-between">
               <div className="flex items-center gap-1.5">
-                <Shield className="w-4.5 h-4.5 text-emerald-500" />
+                <Shield className="w-4.5 h-4.5 text-primary-500" />
                 Status Sistem & Data
               </div>
             </div>
@@ -308,7 +308,7 @@ export default function AccountSettingsTab({
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
               }}
-              className="w-full mt-4 bg-slate-800 hover:bg-slate-700 text-emerald-400 font-bold py-2 rounded-lg border border-slate-700 flex items-center justify-center gap-2 transition"
+              className="w-full mt-4 bg-slate-800 hover:bg-slate-700 text-primary-400 font-bold py-2 rounded-lg border border-slate-700 flex items-center justify-center gap-2 transition"
             >
               <Database className="w-4 h-4" />
               Unduh Database (JSON)
@@ -338,7 +338,7 @@ export default function AccountSettingsTab({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Contoh: Romo Paroki, Pr."
-                  className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 text-slate-800 font-medium"
+                  className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-slate-800 font-medium"
                 />
               </div>
 
@@ -354,7 +354,7 @@ export default function AccountSettingsTab({
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Contoh: romo@pringwulung.org"
-                  className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 text-slate-800 font-medium font-mono"
+                  className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-slate-800 font-medium font-mono"
                 />
               </div>
 
@@ -372,7 +372,7 @@ export default function AccountSettingsTab({
                   {/* Super Admin option */}
                   <label className={`border rounded-lg p-3 cursor-pointer flex flex-col gap-1.5 transition ${
                     role === 'SUPER_ADMIN' 
-                      ? 'border-emerald-500 bg-emerald-50/40 text-emerald-800' 
+                      ? 'border-primary-500 bg-primary-50/40 text-primary-800' 
                       : 'border-slate-200 text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800'
                   }`}>
                     <div className="flex justify-between items-center w-full">
@@ -383,7 +383,7 @@ export default function AccountSettingsTab({
                         value="SUPER_ADMIN"
                         checked={role === 'SUPER_ADMIN'}
                         onChange={() => setRole('SUPER_ADMIN')}
-                        className="text-emerald-600 focus:ring-emerald-500 w-3.5 h-3.5"
+                        className="text-primary-600 focus:ring-primary-500 w-3.5 h-3.5"
                       />
                     </div>
                     <span className="text-[10px] text-slate-450 leading-snug font-medium">Izin penulisan penuh database, pendaftaran baru, & master data.</span>
@@ -392,7 +392,7 @@ export default function AccountSettingsTab({
                   {/* Koordinator Tim option */}
                   <label className={`border rounded-lg p-3 cursor-pointer flex flex-col gap-1.5 transition ${
                     role === 'KOORDINATOR_TIM' 
-                      ? 'border-emerald-500 bg-emerald-50/40 text-emerald-805' 
+                      ? 'border-primary-500 bg-primary-50/40 text-primary-805' 
                       : 'border-slate-200 text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800'
                   }`}>
                     <div className="flex justify-between items-center w-full">
@@ -403,7 +403,7 @@ export default function AccountSettingsTab({
                         value="KOORDINATOR_TIM"
                         checked={role === 'KOORDINATOR_TIM'}
                         onChange={() => setRole('KOORDINATOR_TIM')}
-                        className="text-emerald-600 focus:ring-emerald-500 w-3.5 h-3.5"
+                        className="text-primary-600 focus:ring-primary-500 w-3.5 h-3.5"
                       />
                     </div>
                     <span className="text-[10px] text-slate-455 leading-snug font-medium">Pengeditan terbatas hanya untuk aset di bawah lingkup fungsi sasarannya.</span>
@@ -412,7 +412,7 @@ export default function AccountSettingsTab({
                   {/* Petugas Viewer option */}
                   <label className={`border rounded-lg p-3 cursor-pointer flex flex-col gap-1.5 transition ${
                     role === 'PETUGAS_VIEWER' 
-                      ? 'border-emerald-500 bg-emerald-50/40 text-emerald-800' 
+                      ? 'border-primary-500 bg-primary-50/40 text-primary-800' 
                       : 'border-slate-200 text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800'
                   }`}>
                     <div className="flex justify-between items-center w-full">
@@ -423,7 +423,7 @@ export default function AccountSettingsTab({
                         value="PETUGAS_VIEWER"
                         checked={role === 'PETUGAS_VIEWER'}
                         onChange={() => setRole('PETUGAS_VIEWER')}
-                        className="text-emerald-600 focus:ring-emerald-500 w-3.5 h-3.5"
+                        className="text-primary-600 focus:ring-primary-500 w-3.5 h-3.5"
                       />
                     </div>
                     <span className="text-[10px] text-slate-455 leading-snug font-medium">Hanya lisensi pembaca. Modifikasi apa pun dinonaktifkan di sistem.</span>
@@ -445,7 +445,7 @@ export default function AccountSettingsTab({
                   <select
                     value={kategoriAkses}
                     onChange={(e) => setKategoriAkses(e.target.value)}
-                    className="w-full text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg px-2.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer"
+                    className="w-full text-xs font-semibold text-slate-700 bg-white border border-slate-200 rounded-lg px-2.5 py-2.5 focus:outline-none focus:ring-1 focus:ring-primary-500 cursor-pointer"
                   >
                     {Object.entries(jenisAsetMap).map(([code, name]) => (
                       <option key={code} value={code}>[{code}] {name}</option>
@@ -458,7 +458,7 @@ export default function AccountSettingsTab({
               <div className="pt-4 border-t border-slate-100 flex justify-end">
                 <button
                   type="submit"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 px-6 rounded-lg transition shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer flex items-center gap-2"
+                  className="bg-primary-600 hover:bg-primary-700 text-white font-bold py-2.5 px-6 rounded-lg transition shadow-md hover:shadow-lg active:scale-[0.98] cursor-pointer flex items-center gap-2"
                 >
                   <Save className="w-4 h-4" />
                   Simpan Perubahan Akun
@@ -477,7 +477,7 @@ export default function AccountSettingsTab({
           {/* Section banner header */}
           <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="p-2 bg-emerald-50 text-emerald-700 rounded-lg">
+              <div className="p-2 bg-primary-50 text-primary-700 rounded-lg">
                 <Users className="w-5 h-5 shrink-0" />
               </div>
               <div className="text-left">
@@ -485,7 +485,7 @@ export default function AccountSettingsTab({
                 <p className="text-xs text-slate-500 text-left mt-0.5">Daftar pengguna dan konfigurasi izin RBAC paroki</p>
               </div>
             </div>
-            <span className="bg-emerald-100 text-emerald-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider font-mono shadow-sm">
+            <span className="bg-primary-100 text-primary-800 text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider font-mono shadow-sm">
               Hak Akses: Super Admin
             </span>
           </div>
@@ -494,8 +494,8 @@ export default function AccountSettingsTab({
             
             {/* Feedback notifications */}
             {userSuccessMsg && (
-              <div className="bg-emerald-50 text-emerald-800 p-3.5 border border-emerald-100 rounded-lg text-xs flex items-center gap-2 font-semibold mb-5 animate-fade-in text-left">
-                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="bg-primary-50 text-primary-800 p-3.5 border border-primary-100 rounded-lg text-xs flex items-center gap-2 font-semibold mb-5 animate-fade-in text-left">
+                <ShieldCheck className="w-4 h-4 text-primary-600 shrink-0" />
                 <span>{userSuccessMsg}</span>
               </div>
             )}
@@ -530,7 +530,7 @@ export default function AccountSettingsTab({
                         const isSelf = u.id === currentUser.id;
                         
                         return (
-                          <tr key={u.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition ${isSelf ? 'bg-emerald-50/10' : ''}`}>
+                          <tr key={u.id} className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition ${isSelf ? 'bg-primary-50/10' : ''}`}>
                             <td className="px-5 py-3">
                               <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 font-bold text-slate-600 border border-slate-200">
@@ -540,7 +540,7 @@ export default function AccountSettingsTab({
                                   <div className="font-bold text-slate-800 text-xs flex items-center gap-1.5 leading-snug">
                                     <span className="truncate block max-w-[150px] sm:max-w-none">{u.name}</span>
                                     {isSelf && (
-                                      <span className="bg-emerald-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide shrink-0">
+                                      <span className="bg-primary-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wide shrink-0">
                                         Anda
                                       </span>
                                     )}
@@ -552,7 +552,7 @@ export default function AccountSettingsTab({
                             <td className="px-4 py-3 text-left">
                               <div className="space-y-1">
                                 {u.role === 'SUPER_ADMIN' ? (
-                                  <span className="inline-flex items-center gap-1 bg-emerald-50 border border-emerald-200 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider font-mono">
+                                  <span className="inline-flex items-center gap-1 bg-primary-50 border border-primary-200 text-primary-800 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider font-mono">
                                     <ShieldCheck className="w-3 h-3" />
                                     Super Admin
                                   </span>
@@ -602,7 +602,7 @@ export default function AccountSettingsTab({
               {/* REGISTER NEW USER FORM (5 cols) */}
               <div className="xl:col-span-5 bg-slate-50/70 p-5 rounded-2xl border border-slate-200 shadow-sm space-y-4">
                 <div className="flex items-center gap-2 border-b border-slate-200 pb-3 mb-1">
-                  <UserPlus className="w-4.5 h-4.5 text-emerald-600 shrink-0" />
+                  <UserPlus className="w-4.5 h-4.5 text-primary-600 shrink-0" />
                   <h4 className="text-xs font-bold text-slate-800 uppercase tracking-widest text-left">Pendaftaran Operator Baru</h4>
                 </div>
 
@@ -620,7 +620,7 @@ export default function AccountSettingsTab({
                       value={newUserName}
                       onChange={(e) => setNewUserName(e.target.value)}
                       placeholder="Contoh: Heribertus Maryono"
-                      className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 text-slate-800 font-medium"
+                      className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-slate-800 font-medium"
                     />
                   </div>
 
@@ -636,7 +636,7 @@ export default function AccountSettingsTab({
                       value={newUserEmail}
                       onChange={(e) => setNewUserEmail(e.target.value)}
                       placeholder="Contoh: heribertus@pringwulung.org"
-                      className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 text-slate-800 font-medium font-mono"
+                      className="w-full p-2.5 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 text-slate-800 font-medium font-mono"
                     />
                   </div>
 
@@ -651,7 +651,7 @@ export default function AccountSettingsTab({
                       {/* Koordinator Tim */}
                       <label className={`border rounded-lg p-2.5 cursor-pointer flex items-center justify-between transition ${
                         newUserRole === 'KOORDINATOR_TIM'
-                          ? 'border-emerald-500 bg-emerald-50/40 text-emerald-800'
+                          ? 'border-primary-500 bg-primary-50/40 text-primary-800'
                           : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800'
                       }`}>
                         <div className="flex flex-col text-left">
@@ -664,14 +664,14 @@ export default function AccountSettingsTab({
                           value="KOORDINATOR_TIM"
                           checked={newUserRole === 'KOORDINATOR_TIM'}
                           onChange={() => setNewUserRole('KOORDINATOR_TIM')}
-                          className="text-emerald-600 focus:ring-emerald-500 w-3.5 h-3.5"
+                          className="text-primary-600 focus:ring-primary-500 w-3.5 h-3.5"
                         />
                       </label>
 
                       {/* Petugas Viewer */}
                       <label className={`border rounded-lg p-2.5 cursor-pointer flex items-center justify-between transition ${
                         newUserRole === 'PETUGAS_VIEWER'
-                          ? 'border-emerald-500 bg-emerald-50/40 text-emerald-800'
+                          ? 'border-primary-500 bg-primary-50/40 text-primary-800'
                           : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800'
                       }`}>
                         <div className="flex flex-col text-left">
@@ -684,14 +684,14 @@ export default function AccountSettingsTab({
                           value="PETUGAS_VIEWER"
                           checked={newUserRole === 'PETUGAS_VIEWER'}
                           onChange={() => setNewUserRole('PETUGAS_VIEWER')}
-                          className="text-emerald-600 focus:ring-emerald-500 w-3.5 h-3.5"
+                          className="text-primary-600 focus:ring-primary-500 w-3.5 h-3.5"
                         />
                       </label>
 
                       {/* Super Admin */}
                       <label className={`border rounded-lg p-2.5 cursor-pointer flex items-center justify-between transition ${
                         newUserRole === 'SUPER_ADMIN'
-                          ? 'border-emerald-500 bg-emerald-50/40 text-emerald-800'
+                          ? 'border-primary-500 bg-primary-50/40 text-primary-800'
                           : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800'
                       }`}>
                         <div className="flex flex-col text-left">
@@ -704,7 +704,7 @@ export default function AccountSettingsTab({
                           value="SUPER_ADMIN"
                           checked={newUserRole === 'SUPER_ADMIN'}
                           onChange={() => setNewUserRole('SUPER_ADMIN')}
-                          className="text-emerald-600 focus:ring-emerald-500 w-3.5 h-3.5"
+                          className="text-primary-600 focus:ring-primary-500 w-3.5 h-3.5"
                         />
                       </label>
                     </div>
@@ -720,7 +720,7 @@ export default function AccountSettingsTab({
                       <select
                         value={newUserKategoriAkses}
                         onChange={(e) => setNewUserKategoriAkses(e.target.value)}
-                        className="w-full text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                        className="w-full text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 rounded-lg px-2 py-2 cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary-500"
                       >
                         {Object.entries(jenisAsetMap).map(([code, catName]) => (
                           <option key={code} value={code}>[{code}] {catName}</option>

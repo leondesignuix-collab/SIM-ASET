@@ -57,7 +57,7 @@ export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps)
         
         {/* Upper Brand Icon & Title */}
         <div className="text-center mb-6">
-          <div className="inline-flex w-14 h-14 bg-emerald-600 dark:bg-emerald-500 rounded-2xl items-center justify-center text-white shadow-xl shadow-emerald-500/20 mb-3.5 transition-transform hover:rotate-3">
+          <div className="inline-flex w-14 h-14 bg-primary-600 dark:bg-primary-500 rounded-2xl items-center justify-center text-white shadow-xl shadow-primary-500/20 mb-3.5 transition-transform hover:rotate-3">
             <Church className="w-8 h-8" />
           </div>
           <h1 className="font-extrabold text-2xl tracking-tight text-slate-900 dark:text-white font-display">
@@ -73,7 +73,7 @@ export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps)
           
           <div className="mb-6">
             <h2 className="text-lg font-bold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-              <Lock className="w-4 h-4 text-emerald-500" />
+              <Lock className="w-4 h-4 text-primary-500" />
               Masuk ke Workspace
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
@@ -108,7 +108,7 @@ export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps)
                   value={usernameInput}
                   onChange={(e) => setUsernameInput(e.target.value)}
                   placeholder="Masukkan username anda (e.g. romo)"
-                  className="block w-full pl-9 pr-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/80 transition-all font-sans placeholder-slate-450 dark:placeholder-slate-500"
+                  className="block w-full pl-9 pr-3 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/80 transition-all font-sans placeholder-slate-450 dark:placeholder-slate-500"
                 />
               </div>
             </div>
@@ -130,7 +130,7 @@ export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps)
                   value={passwordInput}
                   onChange={(e) => setPasswordInput(e.target.value)}
                   placeholder="Masukkan password anda"
-                  className="block w-full pl-9 pr-10 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500/80 transition-all font-sans placeholder-slate-450 dark:placeholder-slate-500"
+                  className="block w-full pl-9 pr-10 py-2 text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500/80 transition-all font-sans placeholder-slate-450 dark:placeholder-slate-500"
                 />
                 <button
                   type="button"
@@ -147,7 +147,7 @@ export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps)
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border border-emerald-700 shadow-md shadow-emerald-500/10 cursor-pointer ${
+              className={`w-full py-2.5 px-4 bg-primary-600 hover:bg-primary-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border border-primary-700 shadow-md shadow-primary-500/10 cursor-pointer ${
                 isSubmitting ? 'opacity-70 pointer-events-none' : ''
               }`}
             >

@@ -171,14 +171,14 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
     <div id="dashboard-container" className="space-y-6">
       {/* Welcome Banner */}
       <div className="bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 text-white rounded-xl p-5 border border-slate-800 shadow-md relative overflow-hidden">
-        <div className="absolute right-0 top-0 -mt-4 -mr-4 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl"></div>
+        <div className="absolute right-0 top-0 -mt-4 -mr-4 w-40 h-40 bg-primary-500/10 rounded-full blur-2xl"></div>
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-0.5 rounded-full font-mono font-medium tracking-wider uppercase">PAROKI SANTO YOHANES RASUL PRINGWULUNG</span>
+              <span className="bg-primary-500/20 text-primary-400 text-[10px] px-2 py-0.5 rounded-full font-mono font-medium tracking-wider uppercase">PAROKI SANTO YOHANES RASUL PRINGWULUNG</span>
               <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
               </span>
             </div>
             <h2 className="text-xl font-bold font-display tracking-tight text-white">SIM Aset & Inventaris Gereja</h2>
@@ -188,7 +188,7 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
           </div>
           <div className="flex flex-col items-end bg-slate-950/40 backdrop-blur-md px-4 py-2 border border-slate-800 rounded-lg shrink-0">
             <span className="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Total Nilai Buku (Est)</span>
-            <span className="text-xl font-bold text-emerald-400 font-mono tracking-tight">
+            <span className="text-xl font-bold text-primary-400 font-mono tracking-tight">
               {formatRupiah(stats.totalBookValue)}
             </span>
           </div>
@@ -201,7 +201,7 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
         <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
           <p className="text-[10px] font-bold text-slate-450 uppercase tracking-widest mb-1.5 flex items-center justify-between">
             <span>Total Kuantitas</span>
-            <span className="text-emerald-500 text-[10px] font-bold bg-emerald-50 px-1.5 py-0.5 rounded">Aktif</span>
+            <span className="text-primary-500 text-[10px] font-bold bg-primary-50 px-1.5 py-0.5 rounded">Aktif</span>
           </p>
           <div className="flex items-end justify-between">
             <span className="text-2xl font-bold font-mono text-slate-900">{stats.totalUnits.toLocaleString('id-ID')}</span>
@@ -222,10 +222,10 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
         <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
           <p className="text-[10px] font-bold text-slate-450 uppercase tracking-widest mb-1.5 flex items-center justify-between">
             <span>Nilai Buku Saat Ini</span>
-            <span className="text-emerald-500 text-[9px] font-bold bg-emerald-50 px-1 py-0.2 rounded">Depresiasi</span>
+            <span className="text-primary-500 text-[9px] font-bold bg-primary-50 px-1 py-0.2 rounded">Depresiasi</span>
           </p>
           <div className="flex items-end justify-between">
-            <span className="text-xl font-bold font-mono text-emerald-600">{formatRupiah(stats.totalBookValue)}</span>
+            <span className="text-xl font-bold font-mono text-primary-600">{formatRupiah(stats.totalBookValue)}</span>
             <span className="text-[10px] text-slate-400 font-medium">Aktual</span>
           </div>
         </div>
@@ -349,7 +349,7 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
             <div>
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
+                  <div className="p-2 bg-primary-50 text-primary-600 rounded-lg">
                     <TrendingUp className="w-5 h-5 shrink-0" />
                   </div>
                   <div>
@@ -358,7 +358,7 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
                   </div>
                 </div>
                 <div className="flex items-center gap-4 text-xs font-medium text-slate-500 shrink-0">
-                  <div className="flex items-center gap-1.5 font-sans font-bold text-[9px] tracking-wide text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase">
+                  <div className="flex items-center gap-1.5 font-sans font-bold text-[9px] tracking-wide text-primary-600 bg-primary-50 px-2 py-0.5 rounded uppercase">
                     Nilai Buku
                   </div>
                 </div>
@@ -404,8 +404,8 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
                                 <span className="font-bold text-slate-400 text-right font-mono">{formatRupiah(data.value)}</span>
                               </div>
                               <div className="flex items-center gap-2 justify-between border-t border-slate-850 pt-1 mt-1">
-                                <span className="text-emerald-400 font-semibold">Total Nilai Buku:</span>
-                                <span className="font-bold text-emerald-400 text-right font-mono">{formatRupiah(data.bookValue)}</span>
+                                <span className="text-primary-400 font-semibold">Total Nilai Buku:</span>
+                                <span className="font-bold text-primary-400 text-right font-mono">{formatRupiah(data.bookValue)}</span>
                               </div>
                             </div>
                           );
@@ -493,7 +493,7 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
                       </td>
                       <td className="px-6 py-3 text-right">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                          asset.kondisiBarang === 'BAIK' ? 'bg-emerald-50 text-emerald-700' :
+                          asset.kondisiBarang === 'BAIK' ? 'bg-primary-50 text-primary-700' :
                           asset.kondisiBarang === 'RUSAK_RINGAN' ? 'bg-amber-50 text-amber-700' : 'bg-red-50 text-red-700'
                         }`}>
                           {asset.kondisiBarang.replace('_', ' ')}

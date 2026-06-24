@@ -100,12 +100,12 @@ export default function AssetModal({
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Border
-    ctx.strokeStyle = '#10b981'; // emerald-500
+    ctx.strokeStyle = '#10b981'; // primary-500
     ctx.lineWidth = 4;
     ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
 
     // Header strip
-    ctx.fillStyle = '#059669'; // emerald-600
+    ctx.fillStyle = '#059669'; // primary-600
     ctx.fillRect(10, 10, canvas.width - 20, 42);
 
     // Header text
@@ -148,7 +148,7 @@ export default function AssetModal({
 
     // Serial Code Label (large)
     y = Math.max(y + 26, 138);
-    ctx.fillStyle = '#059669'; // emerald-600
+    ctx.fillStyle = '#059669'; // primary-600
     ctx.font = 'bold 18px "JetBrains Mono", Courier, monospace';
     ctx.fillText(asset.noSeriFinal, 192, y);
 
@@ -392,7 +392,7 @@ export default function AssetModal({
                 <button
                   type="button"
                   onClick={printLabel}
-                  className="w-full flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[9px] py-1.5 px-2 rounded-lg uppercase tracking-wide transition cursor-pointer"
+                  className="w-full flex items-center justify-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white font-bold text-[9px] py-1.5 px-2 rounded-lg uppercase tracking-wide transition cursor-pointer"
                   title="Cetak Label Stiker Fisik"
                 >
                   <Printer className="w-3 h-3" />
@@ -462,12 +462,12 @@ export default function AssetModal({
               <div className="bg-indigo-950 text-indigo-100 p-2.5 rounded-lg flex flex-col gap-1 text-xs pt-2">
                 <div className="flex justify-between items-center font-bold">
                   <span>Nilai Buku Saat Ini (Unit):</span>
-                  <span className="text-emerald-400 font-mono text-sm leading-none">{formatRupiah(deprValues.nilaiBuku)}</span>
+                  <span className="text-primary-400 font-mono text-sm leading-none">{formatRupiah(deprValues.nilaiBuku)}</span>
                 </div>
                 {asset.qty > 1 && (
                   <div className="flex justify-between items-center font-bold pt-1.5 border-t border-indigo-900">
                     <span>Total Nilai Buku ({asset.qty} {asset.satuan}):</span>
-                    <span className="text-emerald-300 font-mono text-sm leading-none">{formatRupiah(deprValues.nilaiBuku * asset.qty)}</span>
+                    <span className="text-primary-300 font-mono text-sm leading-none">{formatRupiah(deprValues.nilaiBuku * asset.qty)}</span>
                   </div>
                 )}
               </div>

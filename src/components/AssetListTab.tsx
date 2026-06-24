@@ -570,7 +570,7 @@ export default function AssetListTab({
               placeholder="Cari berdasarkan uraian barang, No Seri Final, atau kategori..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-slate-50/50"
+              className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-1 focus:ring-primary-500 bg-slate-50/50"
             />
             {searchTerm && (
               <button 
@@ -587,25 +587,25 @@ export default function AssetListTab({
               onClick={handleExportPDF}
               type="button"
               title="Ekspor daftar aset tersaring ke file PDF"
-              className="bg-white hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-705 text-slate-700 hover:text-emerald-700 border border-slate-200 px-3.5 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer"
+              className="bg-white hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-705 text-slate-700 hover:text-primary-700 border border-slate-200 px-3.5 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer"
             >
-              <FileText className="w-4 h-4 text-emerald-600" />
+              <FileText className="w-4 h-4 text-primary-600" />
               <span>Ekspor PDF</span>
             </button>
             <button
               onClick={handleExportCSV}
               type="button"
               title="Ekspor daftar aset tersaring ke file CSV"
-              className="bg-white hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-705 text-slate-700 hover:text-emerald-700 border border-slate-200 px-3.5 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer"
+              className="bg-white hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-705 text-slate-700 hover:text-primary-700 border border-slate-200 px-3.5 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95 cursor-pointer"
             >
-              <FileSpreadsheet className="w-4 h-4 text-emerald-600" />
+              <FileSpreadsheet className="w-4 h-4 text-primary-600" />
               <span>Ekspor CSV</span>
             </button>
 
             {currentUser.role !== 'PETUGAS_VIEWER' ? (
               <button
                 onClick={handleOpenAddForm}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95"
+                className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-1.5 shadow-sm transition active:scale-95"
               >
                 <Plus className="w-4 h-4" />
                 Aset Baru
@@ -622,7 +622,7 @@ export default function AssetListTab({
         {/* Filters panel */}
         <div className="flex flex-wrap items-center gap-2.5 pt-2 border-t border-slate-100 text-xs">
           <div className="flex items-center gap-1.5 text-slate-400 font-medium animate-pulse">
-            <Filter className="w-3.5 h-3.5 text-emerald-500" />
+            <Filter className="w-3.5 h-3.5 text-primary-500" />
             <span>Saring:</span>
           </div>
 
@@ -630,7 +630,7 @@ export default function AssetListTab({
           <select 
             value={selectedCategory} 
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-none rounded-md px-2.5 py-1.5 text-slate-600 dark:text-slate-200 font-medium cursor-pointer max-w-[200px] text-xs focus:ring-1 focus:ring-emerald-500"
+            className="bg-white hover:bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-none rounded-md px-2.5 py-1.5 text-slate-600 dark:text-slate-200 font-medium cursor-pointer max-w-[200px] text-xs focus:ring-1 focus:ring-primary-500"
           >
             <option value="">Semua Kategori</option>
             {Object.entries(jMap).map(([code, name]) => (
@@ -642,7 +642,7 @@ export default function AssetListTab({
           <select 
             value={selectedLocation} 
             onChange={(e) => setSelectedLocation(e.target.value)}
-            className="bg-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border-none rounded-md px-2.5 py-1.5 text-slate-600 font-medium cursor-pointer text-xs focus:ring-1 focus:ring-emerald-500"
+            className="bg-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border-none rounded-md px-2.5 py-1.5 text-slate-600 font-medium cursor-pointer text-xs focus:ring-1 focus:ring-primary-500"
           >
             <option value="">Semua Ruangan</option>
             {Object.entries(lMap).map(([code, name]) => (
@@ -654,7 +654,7 @@ export default function AssetListTab({
           <select 
             value={selectedCondition} 
             onChange={(e) => setSelectedCondition(e.target.value)}
-            className="bg-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border-none rounded-md px-2.5 py-1.5 text-slate-600 font-medium cursor-pointer text-xs focus:ring-1 focus:ring-emerald-500"
+            className="bg-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border-none rounded-md px-2.5 py-1.5 text-slate-600 font-medium cursor-pointer text-xs focus:ring-1 focus:ring-primary-500"
           >
             <option value="">Semua Kondisi</option>
             <option value="BAIK">Baik</option>
@@ -665,14 +665,14 @@ export default function AssetListTab({
           {(selectedCategory || selectedLocation || selectedCondition || searchTerm) && (
             <button 
               onClick={resetFilters}
-              className="text-emerald-600 font-bold hover:text-emerald-800 underline uppercase tracking-wider text-[10px] pl-1 cursor-pointer"
+              className="text-primary-600 font-bold hover:text-primary-800 underline uppercase tracking-wider text-[10px] pl-1 cursor-pointer"
             >
               Ulangi Pencarian
             </button>
           )}
 
           <div className="ml-auto text-slate-400 text-[11px] font-mono">
-            Ditemukan: <span className="font-bold text-emerald-650">{filteredAssets.length}</span> / {assets.length} unit
+            Ditemukan: <span className="font-bold text-primary-650">{filteredAssets.length}</span> / {assets.length} unit
           </div>
         </div>
       </div>
@@ -682,7 +682,7 @@ export default function AssetListTab({
         {selectedAssetIds.length > 0 && (
           <div className="bg-slate-900 text-slate-100 px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-3 text-xs animate-fade-in font-sans">
             <div className="flex items-center gap-3">
-              <span className="bg-emerald-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px] tracking-wide shrink-0">
+              <span className="bg-primary-500 text-slate-950 font-bold px-2 py-0.5 rounded text-[10px] tracking-wide shrink-0">
                 {selectedAssetIds.length} UNIT DIPILIH
               </span>
               <span className="text-slate-400 font-medium">
@@ -704,7 +704,7 @@ export default function AssetListTab({
               <button
                 type="button"
                 onClick={() => setShowBulkPrintModal(true)}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition active:scale-95 cursor-pointer shadow"
+                className="bg-primary-600 hover:bg-primary-700 text-white font-bold px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition active:scale-95 cursor-pointer shadow"
               >
                 <Printer className="w-3.5 h-3.5 animate-bounce" />
                 Cetak Label Massal ({selectedAssetIds.length})
@@ -748,7 +748,7 @@ export default function AssetListTab({
                       type="checkbox"
                       checked={filteredAssets.length > 0 && filteredAssets.every(a => selectedAssetIds.includes(a.id))}
                       onChange={handleToggleAll}
-                      className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer w-3.5 h-3.5"
+                      className="rounded border-slate-300 text-primary-600 focus:ring-primary-500 cursor-pointer w-3.5 h-3.5"
                     />
                   </th>
                   <th className="px-6 py-3.5">No. Seri Final [Level 1-6]</th>
@@ -782,8 +782,8 @@ export default function AssetListTab({
                   return (
                     <tr 
                       key={asset.id} 
-                      className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition group border-b border-transparent hover:border-emerald-100 ${
-                        isChecked ? 'bg-emerald-50/10' : ''
+                      className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition group border-b border-transparent hover:border-primary-100 ${
+                        isChecked ? 'bg-primary-50/10' : ''
                       }`}
                     >
                       <td className="pl-6 pr-2 py-4 text-center select-none">
@@ -791,14 +791,14 @@ export default function AssetListTab({
                           type="checkbox"
                           checked={isChecked}
                           onChange={() => handleToggleOne(asset.id)}
-                          className="rounded border-slate-300 text-emerald-600 focus:ring-emerald-500 cursor-pointer w-3.5 h-3.5"
+                          className="rounded border-slate-300 text-primary-600 focus:ring-primary-500 cursor-pointer w-3.5 h-3.5"
                         />
                       </td>
                       {/* Column 1: Serial Code */}
                       <td className="px-6 py-4">
                         <span 
                           onClick={() => onSelectAsset(asset)}
-                          className="font-mono text-xs text-emerald-600 hover:text-emerald-700 font-bold decoration-dashed hover:underline cursor-pointer tracking-tight"
+                          className="font-mono text-xs text-primary-600 hover:text-primary-700 font-bold decoration-dashed hover:underline cursor-pointer tracking-tight"
                         >
                           {asset.noSeriFinal}
                         </span>
@@ -811,7 +811,7 @@ export default function AssetListTab({
                       <td className="px-6 py-4 max-w-xs">
                         <div 
                           onClick={() => onSelectAsset(asset)}
-                          className="font-semibold text-slate-800 text-xs hover:text-emerald-600 cursor-pointer transition break-words"
+                          className="font-semibold text-slate-800 text-xs hover:text-primary-600 cursor-pointer transition break-words"
                         >
                           {asset.uraian}
                         </div>
@@ -826,7 +826,7 @@ export default function AssetListTab({
                       {/* Column 3: Physical Condition */}
                       <td className="px-6 py-4">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                          asset.kondisiBarang === 'BAIK' ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' :
+                          asset.kondisiBarang === 'BAIK' ? 'bg-primary-50 text-primary-700 border border-primary-100' :
                           asset.kondisiBarang === 'RUSAK_RINGAN' ? 'bg-amber-50 text-amber-700 border border-amber-100' : 
                           'bg-red-50 text-red-700 border border-red-100'
                         }`}>
@@ -850,7 +850,7 @@ export default function AssetListTab({
                           <div className="w-16 bg-slate-100 rounded-full h-1.5 overflow-hidden shrink-0">
                             <div 
                               className={`h-full rounded-full ${
-                                dPercent > 80 ? 'bg-amber-500' : dPercent > 50 ? 'bg-emerald-600' : 'bg-emerald-400'
+                                dPercent > 80 ? 'bg-amber-500' : dPercent > 50 ? 'bg-primary-600' : 'bg-primary-400'
                               }`}
                               style={{ width: `${dPercent}%` }}
                             ></div>
@@ -873,11 +873,11 @@ export default function AssetListTab({
 
                       {/* Column 6: Current Book Value */}
                       <td className="px-6 py-4">
-                        <span className="font-mono font-bold text-xs text-emerald-700 block">
+                        <span className="font-mono font-bold text-xs text-primary-700 block">
                           {formatRupiah(bVal)}
                         </span>
                         {asset.qty > 1 && (
-                          <span className="font-mono font-bold text-[10px] text-emerald-650 block mt-0.5">
+                          <span className="font-mono font-bold text-[10px] text-primary-650 block mt-0.5">
                             Total: {formatRupiah(bVal * asset.qty)}
                           </span>
                         )}
@@ -904,7 +904,7 @@ export default function AssetListTab({
                               <button 
                                 onClick={() => handleOpenEditForm(asset)}
                                 title="Ubah data"
-                                className="p-1 px-1.5 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded transition"
+                                className="p-1 px-1.5 text-slate-400 hover:text-primary-600 hover:bg-primary-50 rounded transition"
                               >
                                 <Edit className="w-4 h-4" />
                               </button>
@@ -939,7 +939,7 @@ export default function AssetListTab({
                   setItemsPerPage(Number(e.target.value));
                   setCurrentPage(1);
                 }}
-                className="bg-white border border-slate-200 rounded px-2.5 py-1 text-xs text-slate-700 font-bold focus:outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer"
+                className="bg-white border border-slate-200 rounded px-2.5 py-1 text-xs text-slate-700 font-bold focus:outline-none focus:ring-1 focus:ring-primary-500 cursor-pointer"
               >
                 <option value={10}>10</option>
                 <option value={25}>25</option>
@@ -970,7 +970,7 @@ export default function AssetListTab({
                 Sebelumnya
               </button>
 
-              <span className="bg-white text-emerald-800 border border-slate-200 font-mono px-3 py-1.5 rounded-lg font-bold text-xs">
+              <span className="bg-white text-primary-800 border border-slate-200 font-mono px-3 py-1.5 rounded-lg font-bold text-xs">
                 {activePage} <span className="text-slate-300 font-sans mx-1">/</span> {totalPages}
               </span>
 
@@ -1006,7 +1006,7 @@ export default function AssetListTab({
             <div className="p-5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
               <div>
                 <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
-                  <FileSpreadsheet className="w-4 h-4 text-emerald-600 animate-pulse" />
+                  <FileSpreadsheet className="w-4 h-4 text-primary-600 animate-pulse" />
                   {isEditing ? 'Ubah Informasi Aset Paroki' : 'Daftarkan Inventaris Aset Baru'}
                 </h3>
                 <p className="text-xs text-slate-500 mt-0.5">
@@ -1033,7 +1033,7 @@ export default function AssetListTab({
               
               {/* Dynamic RBAC Info Alert */}
               <div className="bg-slate-100 p-3 rounded-lg flex gap-2 border border-slate-200 text-xs text-slate-600">
-                <UserCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                <UserCheck className="w-4 h-4 text-primary-600 shrink-0 mt-0.5" />
                 <div>
                   <span className="font-semibold block text-slate-800">Operator Sesi: {currentUser.name} ({currentUser.role})</span>
                   {currentUser.role === 'KOORDINATOR_TIM' && (
@@ -1054,7 +1054,7 @@ export default function AssetListTab({
                   placeholder="Contoh: Genset Honda 5 KVA"
                   value={formData.uraian}
                   onChange={(e) => setFormData({...formData, uraian: e.target.value})}
-                  className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500"
                 />
               </div>
 
@@ -1066,7 +1066,7 @@ export default function AssetListTab({
                     value={formData.jenisAset}
                     disabled={currentUser.role === 'KOORDINATOR_TIM'} // locked to their spec
                     onChange={(e) => setFormData({...formData, jenisAset: e.target.value})}
-                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-white"
+                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white"
                   >
                     {Object.entries(jMap).map(([code, name]) => (
                       <option key={code} value={code}>[{code}] {name}</option>
@@ -1079,7 +1079,7 @@ export default function AssetListTab({
                   <select
                     value={formData.letakRuang}
                     onChange={(e) => setFormData({...formData, letakRuang: e.target.value})}
-                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-white"
+                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white"
                   >
                     {Object.entries(lMap).map(([code, name]) => (
                       <option key={code} value={code}>[{code}] {name}</option>
@@ -1095,7 +1095,7 @@ export default function AssetListTab({
                   <select
                     value={formData.teritori}
                     onChange={(e) => setFormData({...formData, teritori: e.target.value})}
-                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-white"
+                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white"
                   >
                     {Object.entries(tMap).map(([code, name]) => (
                       <option key={code} value={code}>[{code}] {name}</option>
@@ -1108,7 +1108,7 @@ export default function AssetListTab({
                   <select
                     value={formData.peruntukan}
                     onChange={(e) => setFormData({...formData, peruntukan: e.target.value})}
-                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-white"
+                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white"
                   >
                     {Object.entries(pMap).map(([code, name]) => (
                       <option key={code} value={code}>[{code}] {name}</option>
@@ -1124,7 +1124,7 @@ export default function AssetListTab({
                   <select
                     value={formData.kodeNamaBarang}
                     onChange={(e) => setFormData({...formData, kodeNamaBarang: e.target.value})}
-                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-white"
+                    className="w-full text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white"
                   >
                     {Object.entries(kMap).map(([code, name]) => (
                       <option key={code} value={code}>[{code}] {name}</option>
@@ -1228,11 +1228,11 @@ export default function AssetListTab({
               </div>
 
               {formData.qty > 1 && (
-                <div className="bg-emerald-50/50 dark:bg-emerald-950/20 p-2.5 rounded-lg border border-emerald-100/60 text-[11px] text-slate-600 dark:text-slate-300 space-y-1 mt-1">
+                <div className="bg-primary-50/50 dark:bg-primary-950/20 p-2.5 rounded-lg border border-primary-100/60 text-[11px] text-slate-600 dark:text-slate-300 space-y-1 mt-1">
                   <div className="font-bold text-slate-700 dark:text-slate-200">Kalkulasi Total Aset (Qty x Harga):</div>
                   <div className="flex justify-between">
                     <span>Total Biaya Perolehan:</span> 
-                    <span className="font-mono font-bold text-emerald-700 dark:text-emerald-400">
+                    <span className="font-mono font-bold text-primary-700 dark:text-primary-400">
                       {formData.qty} x {formatRupiah(formData.hargaPembelian)} = {formatRupiah(formData.hargaPembelian * formData.qty)}
                     </span>
                   </div>
@@ -1259,7 +1259,7 @@ export default function AssetListTab({
                         onClick={() => setFormData({...formData, kondisiBarang: cond as KondisiBarang})}
                         className={`text-xs font-semibold p-2.5 rounded-lg border text-center transition cursor-pointer ${
                           active 
-                            ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm' 
+                            ? 'bg-primary-600 text-white border-primary-600 shadow-sm' 
                             : 'bg-slate-50 text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 border-slate-200'
                         }`}
                       >
@@ -1272,7 +1272,7 @@ export default function AssetListTab({
 
               {/* Calculation Preview Banner (Live calculations) */}
               <div className="bg-slate-950 text-slate-100 p-4 rounded-xl border border-slate-800 space-y-1.5 shadow-inner">
-                <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block">PREVIEW KALKULASI DEPRESIASI & SERIAL</span>
+                <span className="text-[10px] text-primary-400 font-bold uppercase tracking-wider block">PREVIEW KALKULASI DEPRESIASI & SERIAL</span>
                 
                 <div className="flex justify-between items-center pt-1 border-t border-slate-900">
                   <span className="text-[10px] text-slate-400 font-medium">Auto No Seri:</span>
@@ -1293,7 +1293,7 @@ export default function AssetListTab({
 
                 <div className="flex justify-between items-center text-xs font-bold pt-1 border-t border-slate-900">
                   <span className="text-white">Estimasi Nilai Buku Saat Ini:</span>
-                  <span className="text-emerald-400 font-mono font-bold">{formatRupiah(livePreview.nilaiBuku)}</span>
+                  <span className="text-primary-400 font-mono font-bold">{formatRupiah(livePreview.nilaiBuku)}</span>
                 </div>
               </div>
 
@@ -1311,7 +1311,7 @@ export default function AssetListTab({
               <button 
                 type="button"
                 onClick={handleSubmit}
-                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-3 rounded-lg transition shadow active:scale-95"
+                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-xs py-3 rounded-lg transition shadow active:scale-95"
               >
                 {isEditing ? 'Simpan Perubahan' : 'Daftarkan Sekarang'}
               </button>
@@ -1459,7 +1459,7 @@ export default function AssetListTab({
             {/* Header of Modal */}
             <div className="bg-white border-b border-slate-200 p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shrink-0">
               <div>
-                <div className="flex items-center gap-2 text-emerald-600">
+                <div className="flex items-center gap-2 text-primary-600">
                   <Printer className="w-5 h-5 shrink-0" />
                   <h3 className="font-bold text-sm uppercase tracking-wide text-slate-800">Preview Cetak Massal Label QR</h3>
                 </div>
@@ -1477,7 +1477,7 @@ export default function AssetListTab({
                     onClick={() => setLabelSize('standard')}
                     className={`px-3 py-1 rounded-md text-[11px] font-bold transition cursor-pointer ${
                       labelSize === 'standard' 
-                        ? 'bg-white text-emerald-700 shadow-sm' 
+                        ? 'bg-white text-primary-700 shadow-sm' 
                         : 'text-slate-500 hover:text-slate-800'
                     }`}
                   >
@@ -1488,7 +1488,7 @@ export default function AssetListTab({
                     onClick={() => setLabelSize('compact')}
                     className={`px-3 py-1 rounded-md text-[11px] font-bold transition cursor-pointer ${
                       labelSize === 'compact' 
-                        ? 'bg-white text-emerald-700 shadow-sm' 
+                        ? 'bg-white text-primary-700 shadow-sm' 
                         : 'text-slate-500 hover:text-slate-800'
                     }`}
                   >
@@ -1499,7 +1499,7 @@ export default function AssetListTab({
                 <button
                   type="button"
                   onClick={() => window.print()}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 transition active:scale-95 shadow cursor-pointer text-xs"
+                  className="bg-primary-600 hover:bg-primary-700 text-white font-bold px-4 py-2 rounded-xl flex items-center gap-1.5 transition active:scale-95 shadow cursor-pointer text-xs"
                 >
                   <Printer className="w-4 h-4 shrink-0" />
                   Cetak Sekarang
@@ -1516,8 +1516,8 @@ export default function AssetListTab({
             </div>
 
             {/* Informative Tips Sheet */}
-            <div className="bg-emerald-50 border-b border-emerald-100 px-5 py-2.5 text-[10.5px] leading-normal text-emerald-800 flex items-start gap-2 shrink-0">
-              <Info className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+            <div className="bg-primary-50 border-b border-primary-100 px-5 py-2.5 text-[10.5px] leading-normal text-primary-800 flex items-start gap-2 shrink-0">
+              <Info className="w-3.5 h-3.5 text-primary-600 shrink-0 mt-0.5" />
               <div>
                 <strong>Tips Cetak Stiker:</strong> Klik tombol <strong>"Cetak Sekarang"</strong> di atas. Di menu print browser, pilih opsi margin <strong>"Tidak ada / None"</strong>, centang <strong>"Latar belakang grafis / Background graphics"</strong> agar warna hijau lencana stiker tercetak, dan pasang media kertas label A4 berperekat Anda.
               </div>
@@ -1549,11 +1549,11 @@ export default function AssetListTab({
                     return (
                       <div 
                         key={asset.id} 
-                        className={`print-card-break bg-white border-2 border-emerald-600 rounded-xl overflow-hidden flex flex-col justify-between text-left h-full shadow-sm hover:shadow transition`}
+                        className={`print-card-break bg-white border-2 border-primary-600 rounded-xl overflow-hidden flex flex-col justify-between text-left h-full shadow-sm hover:shadow transition`}
                         style={{ minHeight: labelSize === 'standard' ? '146px' : '110px' }}
                       >
                         {/* Sticker Top Header Bar */}
-                        <div className="bg-emerald-700 text-white py-1.5 px-3 flex items-center justify-between font-sans shrink-0 uppercase tracking-widest text-[8px] font-bold">
+                        <div className="bg-primary-700 text-white py-1.5 px-3 flex items-center justify-between font-sans shrink-0 uppercase tracking-widest text-[8px] font-bold">
                           <span>SIMAS Paroki</span>
                           <span>Inventaris</span>
                         </div>
@@ -1578,7 +1578,7 @@ export default function AssetListTab({
                             </h5>
 
                             {/* No Seri Mono */}
-                            <p className="font-mono text-emerald-700 font-bold text-xs mt-0.5 tracking-tight break-all">
+                            <p className="font-mono text-primary-700 font-bold text-xs mt-0.5 tracking-tight break-all">
                               {asset.noSeriFinal}
                             </p>
 
@@ -1650,7 +1650,7 @@ export default function AssetListTab({
                   -webkit-print-color-adjust: exact !important;
                   print-color-adjust: exact !important;
                 }
-                .bg-emerald-700 {
+                .bg-primary-700 {
                   background-color: #047857 !important;
                   -webkit-print-color-adjust: exact !important;
                   print-color-adjust: exact !important;
@@ -1658,7 +1658,7 @@ export default function AssetListTab({
                 .text-white {
                   color: #ffffff !important;
                 }
-                .text-emerald-700 {
+                .text-primary-700 {
                   color: #047857 !important;
                 }
               }

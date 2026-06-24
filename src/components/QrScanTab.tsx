@@ -282,7 +282,7 @@ export default function QrScanTab({
         <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
           <div>
             <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide flex items-center gap-2">
-              <Scan className="w-4 h-4 text-emerald-600 animate-pulse" />
+              <Scan className="w-4 h-4 text-primary-600 animate-pulse" />
               Kamera Scan QR Simulator
             </h3>
             <p className="text-[11px] text-slate-400">Pindai label inventaris untuk menarik berkas data, depresiasi real-time, dan mutasi fisik [1, 2].</p>
@@ -293,13 +293,13 @@ export default function QrScanTab({
             
             {/* Overlay grid scan lines */}
             <div className="absolute inset-0 pointer-events-none border border-white/5 opacity-10 flex flex-col justify-around">
-              <div className="border-b border-emerald-500 w-full animate-pulse"></div>
-              <div className="border-b border-emerald-500 w-full"></div>
-              <div className="border-b border-emerald-500 w-full animate-pulse"></div>
+              <div className="border-b border-primary-500 w-full animate-pulse"></div>
+              <div className="border-b border-primary-500 w-full"></div>
+              <div className="border-b border-primary-500 w-full animate-pulse"></div>
             </div>
 
             {/* Matrix target sight indicator */}
-            <div className="absolute w-36 h-36 border-2 border-emerald-500 border-dashed rounded-lg animate-pulse flex items-center justify-center top-1/2 left-1/2 -ml-18 -mt-18">
+            <div className="absolute w-36 h-36 border-2 border-primary-500 border-dashed rounded-lg animate-pulse flex items-center justify-center top-1/2 left-1/2 -ml-18 -mt-18">
               <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
             </div>
 
@@ -310,11 +310,11 @@ export default function QrScanTab({
 
             {isScanning ? (
               <div className="z-10 bg-black/80 px-4 py-2 rounded-lg text-xs font-medium text-white max-w-[80%] flex items-center gap-2">
-                <Compass className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+                <Compass className="w-3.5 h-3.5 animate-spin text-primary-400" />
                 <span>{scanMessage}</span>
               </div>
             ) : scanMessage ? (
-              <div className="z-10 bg-slate-900 px-4 py-2 rounded-lg text-xs font-semibold text-emerald-300 max-w-[80%] border border-slate-800">
+              <div className="z-10 bg-slate-900 px-4 py-2 rounded-lg text-xs font-semibold text-primary-300 max-w-[80%] border border-slate-800">
                 {scanMessage}
               </div>
             ) : (
@@ -335,7 +335,7 @@ export default function QrScanTab({
               <select 
                 value={selectedSerial}
                 onChange={handleDropdownSelect}
-                className="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono"
+                className="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 font-mono"
               >
                 <option value="">-- Simulasi Dekat Kamera --</option>
                 {assets.map(asset => (
@@ -355,11 +355,11 @@ export default function QrScanTab({
                   placeholder="Contoh: 403-2020-1-8-1-17"
                   value={manualCode}
                   onChange={(e) => setManualCode(e.target.value)}
-                  className="flex-1 text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono"
+                  className="flex-1 text-xs p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 font-mono"
                 />
                 <button
                   type="submit"
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs px-3.5 rounded-lg font-semibold flex items-center transition cursor-pointer"
+                  className="bg-primary-600 hover:bg-primary-700 text-white text-xs px-3.5 rounded-lg font-semibold flex items-center transition cursor-pointer"
                 >
                   <Play className="w-3.5 h-3.5" />
                 </button>
@@ -369,10 +369,10 @@ export default function QrScanTab({
         </div>
 
         {/* Informative alert explaining QR standards of dioceses */}
-        <div className="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 text-[11px] text-emerald-950 flex gap-2.5">
-          <AlertTriangle className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
+        <div className="bg-primary-50/50 p-4 rounded-xl border border-primary-100 text-[11px] text-primary-950 flex gap-2.5">
+          <AlertTriangle className="w-4.5 h-4.5 text-primary-600 shrink-0 mt-0.5" />
           <div className="space-y-1">
-            <span className="font-bold text-emerald-900">Informasi Penomoran Seri</span>
+            <span className="font-bold text-primary-900">Informasi Penomoran Seri</span>
             <p className="leading-relaxed text-slate-600">
               Setiap stiker fisik QR memuat segmentasi kode Level-1 s/d Level-7. Jika aset dipindahkan (mutasi), sistem melacak log pergerakan historis sekaligus memperbarui Level penempatan letak ruang pada string visual kode.
             </p>
@@ -396,12 +396,12 @@ export default function QrScanTab({
             {/* Scanned Asset Title Header */}
             <div className="p-5 border-b border-slate-100 bg-slate-50/60 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="space-y-1">
-                <span className="bg-emerald-50 text-emerald-800 font-bold border border-emerald-100 text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider">
+                <span className="bg-primary-50 text-primary-800 font-bold border border-primary-100 text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider">
                   HASIL SCAN AKTIF
                 </span>
                 <h3 className="text-base font-bold text-slate-900">{scannedAsset.uraian}</h3>
                 <div className="text-xs text-slate-500 font-semibold flex flex-wrap items-center gap-1.5">
-                  <span className="font-mono text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">{scannedAsset.noSeriFinal}</span>
+                  <span className="font-mono text-primary-600 font-bold bg-primary-50 px-2 py-0.5 rounded border border-primary-100">{scannedAsset.noSeriFinal}</span>
                   <span className="text-slate-300">|</span>
                   <span>Qty: {scannedAsset.qty} {scannedAsset.satuan}</span>
                 </div>
@@ -456,30 +456,30 @@ export default function QrScanTab({
               </div>
 
               {/* Box 3: Estimasi Nilai Buku Kini */}
-              <div className="bg-emerald-50/40 p-3.5 rounded-lg space-y-1.5 border border-emerald-100/60 flex flex-col justify-center shadow-inner">
-                <span className="text-[10px] text-emerald-700 uppercase tracking-wider block font-bold">Nilai Buku Real-Time</span>
-                <div className="text-xs font-bold text-emerald-800 font-mono leading-tight">
+              <div className="bg-primary-50/40 p-3.5 rounded-lg space-y-1.5 border border-primary-100/60 flex flex-col justify-center shadow-inner">
+                <span className="text-[10px] text-primary-700 uppercase tracking-wider block font-bold">Nilai Buku Real-Time</span>
+                <div className="text-xs font-bold text-primary-800 font-mono leading-tight">
                   Unit: <span className="text-slate-700 font-semibold">{formatRupiah(deprValues?.nilaiBuku || 0)}</span>
                 </div>
                 {scannedAsset.qty > 1 && (
-                  <div className="text-sm font-bold text-emerald-950 font-mono tracking-tight leading-none pt-0.5">
+                  <div className="text-sm font-bold text-primary-950 font-mono tracking-tight leading-none pt-0.5">
                     Total: <span>{formatRupiah((deprValues?.nilaiBuku || 0) * scannedAsset.qty)}</span>
                   </div>
                 )}
-                <span className="text-[9px] text-emerald-600 block mt-1 font-medium">Sesuai kalkulasi tanggal berjalan [2, 10]</span>
+                <span className="text-[9px] text-primary-600 block mt-1 font-medium">Sesuai kalkulasi tanggal berjalan [2, 10]</span>
               </div>
             </div>
 
             {/* Extra details (Location level metrics) */}
             <div className="px-5 py-3 bg-slate-50/50 border-b border-slate-200 text-xs text-slate-600 grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-emerald-600 shrink-0" />
+                <MapPin className="w-4 h-4 text-primary-600 shrink-0" />
                 <span className="font-medium text-slate-800">
                   [{scannedAsset.letakRuang}] {lMap[scannedAsset.letakRuang] || 'Tidak Diketahui'}
                 </span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Compass className="w-4 h-4 text-emerald-600 shrink-0" />
+                <Compass className="w-4 h-4 text-primary-600 shrink-0" />
                 <span className="font-medium text-slate-800">
                   [{scannedAsset.jenisAset}] {jMap[scannedAsset.jenisAset] || 'Tidak Diketahui'}
                 </span>
@@ -492,7 +492,7 @@ export default function QrScanTab({
                 onClick={() => setActiveTab('maintenance')}
                 className={`flex-1 py-3 text-center font-bold tracking-wide uppercase transition cursor-pointer ${
                   activeTab === 'maintenance' 
-                    ? 'bg-white border-b-2 border-emerald-600 text-emerald-600' 
+                    ? 'bg-white border-b-2 border-primary-600 text-primary-600' 
                     : 'text-slate-400 hover:text-slate-600'
                 }`}
               >
@@ -502,7 +502,7 @@ export default function QrScanTab({
                 onClick={() => setActiveTab('mutations')}
                 className={`flex-1 py-3 text-center font-bold tracking-wide uppercase transition cursor-pointer ${
                   activeTab === 'mutations' 
-                    ? 'bg-white border-b-2 border-emerald-600 text-emerald-600' 
+                    ? 'bg-white border-b-2 border-primary-600 text-primary-600' 
                     : 'text-slate-400 hover:text-slate-600'
                 }`}
               >
@@ -512,7 +512,7 @@ export default function QrScanTab({
                 onClick={() => setActiveTab('documents')}
                 className={`flex-1 py-3 text-center font-bold tracking-wide uppercase transition cursor-pointer ${
                   activeTab === 'documents' 
-                    ? 'bg-white border-b-2 border-emerald-600 text-emerald-600' 
+                    ? 'bg-white border-b-2 border-primary-600 text-primary-600' 
                     : 'text-slate-400 hover:text-slate-600'
                 }`}
               >
@@ -527,12 +527,12 @@ export default function QrScanTab({
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <h4 className="text-xs font-bold text-slate-700 uppercase tracking-widest flex items-center gap-1.5">
-                      <Wrench className="w-4 h-4 text-emerald-600 animate-pulse" />
+                      <Wrench className="w-4 h-4 text-primary-600 animate-pulse" />
                       Riwayat Servis / Pemeliharaan Berkala
                     </h4>
                     <button
                       onClick={() => setShowLogForm(!showLogForm)}
-                      className="bg-emerald-50 hover:bg-emerald-100 text-emerald-600 font-bold text-[10px] px-2.5 py-1.5 rounded-lg flex items-center gap-1 inline-block transition cursor-pointer"
+                      className="bg-primary-50 hover:bg-primary-100 text-primary-600 font-bold text-[10px] px-2.5 py-1.5 rounded-lg flex items-center gap-1 inline-block transition cursor-pointer"
                     >
                       <Plus className="w-3 h-3" /> Catat Servis
                     </button>
@@ -540,8 +540,8 @@ export default function QrScanTab({
 
                   {/* Inline Maintenance record form */}
                   {showLogForm && (
-                    <form onSubmit={handleAddLog} className="bg-slate-50 p-4 rounded-xl border border-emerald-100 space-y-3 animate-fade-in text-xs">
-                      <div className="font-bold text-emerald-900 border-b pb-1">Pelaporan Servis Baru</div>
+                    <form onSubmit={handleAddLog} className="bg-slate-50 p-4 rounded-xl border border-primary-100 space-y-3 animate-fade-in text-xs">
+                      <div className="font-bold text-primary-900 border-b pb-1">Pelaporan Servis Baru</div>
                       
                       <div className="grid grid-cols-2 gap-3">
                         <div className="space-y-1">
@@ -551,7 +551,7 @@ export default function QrScanTab({
                             required
                             value={logForm.tanggalServis}
                             onChange={(e) => setLogForm({...logForm, tanggalServis: e.target.value})}
-                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-primary-500 focus:outline-none"
                           />
                         </div>
 
@@ -563,7 +563,7 @@ export default function QrScanTab({
                             min="0"
                             value={logForm.biaya}
                             onChange={(e) => setLogForm({...logForm, biaya: Number(e.target.value)})}
-                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-primary-500 focus:outline-none"
                           />
                         </div>
                       </div>
@@ -577,7 +577,7 @@ export default function QrScanTab({
                             placeholder="Melodia Musik Jogja"
                             value={logForm.vendor}
                             onChange={(e) => setLogForm({...logForm, vendor: e.target.value})}
-                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-primary-500 focus:outline-none"
                           />
                         </div>
 
@@ -587,7 +587,7 @@ export default function QrScanTab({
                             type="date"
                             value={logForm.tanggalServisNext}
                             onChange={(e) => setLogForm({...logForm, tanggalServisNext: e.target.value})}
-                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                            className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-primary-500 focus:outline-none"
                           />
                         </div>
                       </div>
@@ -600,7 +600,7 @@ export default function QrScanTab({
                           value={logForm.deskripsi}
                           onChange={(e) => setLogForm({...logForm, deskripsi: e.target.value})}
                           rows={2}
-                          className="bg-white border p-1.5 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                          className="bg-white border p-1.5 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
                         />
                       </div>
 
@@ -614,7 +614,7 @@ export default function QrScanTab({
                         </button>
                         <button 
                           type="submit"
-                          className="bg-emerald-600 text-white px-3 py-1.5 rounded font-semibold hover:bg-emerald-700 shadow-sm cursor-pointer"
+                          className="bg-primary-600 text-white px-3 py-1.5 rounded font-semibold hover:bg-primary-700 shadow-sm cursor-pointer"
                         >
                           Kirim Log
                         </button>
@@ -633,7 +633,7 @@ export default function QrScanTab({
                         <div key={log.id} className="bg-slate-50 border border-slate-100 p-3.5 rounded-lg text-xs space-y-1.5">
                           <div className="flex justify-between items-center text-slate-400">
                             <span className="font-bold text-slate-700 flex items-center gap-1">
-                               <CheckCircle className="w-3.5 h-3.5 text-emerald-500" />
+                               <CheckCircle className="w-3.5 h-3.5 text-primary-500" />
                               {log.vendor}
                             </span>
                             <span className="font-mono text-[10px]">
@@ -644,7 +644,7 @@ export default function QrScanTab({
                           <div className="font-mono text-[10px] text-slate-500 flex justify-between items-center pt-1 border-t border-slate-100">
                             <span>Biaya: <strong className="text-slate-700">{formatRupiah(log.biaya)}</strong></span>
                             {log.tanggalServisNext && (
-                              <span className="flex items-center gap-0.5 text-emerald-600 font-semibold bg-emerald-55/40 px-1.5 py-0.5 rounded">
+                              <span className="flex items-center gap-0.5 text-primary-600 font-semibold bg-primary-55/40 px-1.5 py-0.5 rounded">
                                 <Clock className="w-3 h-3" />
                                 Servis Next: {new Date(log.tanggalServisNext).toLocaleDateString('id-ID')}
                               </span>
@@ -662,12 +662,12 @@ export default function QrScanTab({
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <h4 className="text-xs font-bold text-slate-700 uppercase tracking-widest flex items-center gap-1.5">
-                      <Compass className="w-4 h-4 text-emerald-600 animate-pulse" />
+                      <Compass className="w-4 h-4 text-primary-600 animate-pulse" />
                       Log Mutasi Perpindahan Ruangan
                     </h4>
                     <button
                       onClick={() => setShowMutationForm(!showMutationForm)}
-                      className="bg-emerald-50 hover:bg-emerald-100 text-emerald-600 font-bold text-[10px] px-2.5 py-1.5 rounded-lg flex items-center gap-1 inline-block transition cursor-pointer"
+                      className="bg-primary-50 hover:bg-primary-100 text-primary-600 font-bold text-[10px] px-2.5 py-1.5 rounded-lg flex items-center gap-1 inline-block transition cursor-pointer"
                     >
                       <Plus className="w-3 h-3" /> Ajukan Pemindahan (Mutasi)
                     </button>
@@ -675,8 +675,8 @@ export default function QrScanTab({
 
                   {/* Inline Mutation Form */}
                   {showMutationForm && (
-                    <form onSubmit={handleAddMut} className="bg-slate-50 p-4 rounded-xl border border-emerald-100 space-y-3 animate-fade-in text-xs">
-                      <div className="font-bold text-emerald-950 border-b pb-1">Penugasan Mutasi Letak</div>
+                    <form onSubmit={handleAddMut} className="bg-slate-50 p-4 rounded-xl border border-primary-100 space-y-3 animate-fade-in text-xs">
+                      <div className="font-bold text-primary-950 border-b pb-1">Penugasan Mutasi Letak</div>
 
                       <div className="grid grid-cols-2 gap-3">
                         <div className="space-y-1">
@@ -691,7 +691,7 @@ export default function QrScanTab({
                           <select 
                             value={mutForm.ruangTujuan}
                             onChange={(e) => setMutForm({...mutForm, ruangTujuan: e.target.value})}
-                            className="bg-white border p-1 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500 bg-white"
+                            className="bg-white border p-1 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-primary-500 bg-white"
                           >
                             {Object.entries(lMap).map(([code, name]) => (
                               <option key={code} value={code}>[{code}] {name}</option>
@@ -708,7 +708,7 @@ export default function QrScanTab({
                           placeholder="Masukkan nama petugas pemindah..."
                           value={mutForm.picName}
                           onChange={(e) => setMutForm({...mutForm, picName: e.target.value})}
-                          className="bg-white border p-1.5 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                          className="bg-white border p-1.5 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
                         />
                       </div>
 
@@ -719,7 +719,7 @@ export default function QrScanTab({
                           placeholder="Alasan mutasi barang..."
                           value={mutForm.keterangan}
                           onChange={(e) => setMutForm({...mutForm, keterangan: e.target.value})}
-                          className="bg-white border p-1.5 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                          className="bg-white border p-1.5 rounded w-full text-xs focus:outline-none focus:ring-1 focus:ring-primary-500"
                         />
                       </div>
 
@@ -733,7 +733,7 @@ export default function QrScanTab({
                         </button>
                         <button 
                           type="submit"
-                          className="bg-emerald-600 text-white px-3 py-1.5 rounded font-semibold hover:bg-emerald-700 shadow-sm cursor-pointer"
+                          className="bg-primary-600 text-white px-3 py-1.5 rounded font-semibold hover:bg-primary-700 shadow-sm cursor-pointer"
                         >
                           Mutasi Aset
                         </button>
@@ -750,12 +750,12 @@ export default function QrScanTab({
                     <div className="space-y-3">
                       {scannedAsset.mutations.map(mut => (
                         <div key={mut.id} className="bg-slate-50 border border-slate-100 p-3 rounded-lg text-xs flex items-start gap-3">
-                          <Compass className="w-5 h-5 text-emerald-600 mt-1 shrink-0 bg-emerald-50 p-1 rounded" />
+                          <Compass className="w-5 h-5 text-primary-600 mt-1 shrink-0 bg-primary-50 p-1 rounded" />
                           <div className="flex-1 space-y-1">
                             <div className="flex items-center gap-1 font-semibold text-slate-700">
                               <span>[{mut.ruangAsal}] {lMap[mut.ruangAsal] || 'Asal'}</span>
                               <ArrowRight className="w-3" />
-                              <span className="text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded">[{mut.ruangTujuan}] {lMap[mut.ruangTujuan] || 'Tujuan'}</span>
+                              <span className="text-primary-700 font-bold bg-primary-50 px-1.5 py-0.5 rounded">[{mut.ruangTujuan}] {lMap[mut.ruangTujuan] || 'Tujuan'}</span>
                             </div>
                             {mut.keterangan && <p className="text-slate-500 font-medium italic">"{mut.keterangan}"</p>}
                             <div className="text-[10px] text-slate-400 font-mono flex justify-between pt-1 border-t border-slate-100/50">
@@ -775,12 +775,12 @@ export default function QrScanTab({
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
                     <h4 className="text-xs font-bold text-slate-700 uppercase tracking-widest flex items-center gap-1.5">
-                      <FileText className="w-4 h-4 text-emerald-600 animate-pulse" />
+                      <FileText className="w-4 h-4 text-primary-600 animate-pulse" />
                       Arsip Digital Terkait (Sertifikat / Nota / Garansi)
                     </h4>
                     <button
                       onClick={() => setShowDocForm(!showDocForm)}
-                      className="bg-emerald-50 hover:bg-emerald-100 text-emerald-600 font-bold text-[10px] px-2.5 py-1.5 rounded-lg flex items-center gap-1 inline-block transition cursor-pointer"
+                      className="bg-primary-50 hover:bg-primary-100 text-primary-600 font-bold text-[10px] px-2.5 py-1.5 rounded-lg flex items-center gap-1 inline-block transition cursor-pointer"
                     >
                       <Plus className="w-3 h-3" /> Tambah Bukti Dokumen
                     </button>
@@ -788,8 +788,8 @@ export default function QrScanTab({
 
                   {/* Inline Document Form */}
                   {showDocForm && (
-                    <form onSubmit={handleAddDoc} className="bg-slate-50 p-4 rounded-xl border border-emerald-100 space-y-3 animate-fade-in text-xs">
-                      <div className="font-bold text-emerald-950 border-b pb-1">Unggah Digital Dokumen Bukti</div>
+                    <form onSubmit={handleAddDoc} className="bg-slate-50 p-4 rounded-xl border border-primary-100 space-y-3 animate-fade-in text-xs">
+                      <div className="font-bold text-primary-950 border-b pb-1">Unggah Digital Dokumen Bukti</div>
                       
                       <div className="space-y-1">
                         <label className="text-[10px] text-slate-400 uppercase font-bold block">Judul / Nama Dokumen Bukti</label>
@@ -799,7 +799,7 @@ export default function QrScanTab({
                           placeholder="Nota Pembelian Toko Sumber Arto"
                           value={docForm.namaDokumen}
                           onChange={(e) => setDocForm({...docForm, namaDokumen: e.target.value})}
-                          className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-emerald-500 focus:outline-none"
+                          className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-primary-500 focus:outline-none"
                         />
                       </div>
 
@@ -811,7 +811,7 @@ export default function QrScanTab({
                           placeholder="e.g. lampiran_nota_pembelian.pdf"
                           value={docForm.fileUrl}
                           onChange={(e) => setDocForm({...docForm, fileUrl: e.target.value})}
-                          className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-emerald-500 focus:outline-none font-mono"
+                          className="bg-white border p-1.5 rounded w-full text-xs focus:ring-1 focus:ring-primary-500 focus:outline-none font-mono"
                         />
                       </div>
 
@@ -825,7 +825,7 @@ export default function QrScanTab({
                         </button>
                         <button 
                           type="submit"
-                          className="bg-emerald-600 text-white px-3 py-1.5 rounded font-semibold hover:bg-emerald-700 shadow-sm cursor-pointer"
+                          className="bg-primary-600 text-white px-3 py-1.5 rounded font-semibold hover:bg-primary-700 shadow-sm cursor-pointer"
                         >
                           Simpan Dokumen
                         </button>
@@ -841,9 +841,9 @@ export default function QrScanTab({
                   ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {scannedAsset.documents.map(doc => (
-                        <div key={doc.id} className="p-3 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-between text-xs hover:border-emerald-200 transition">
+                        <div key={doc.id} className="p-3 bg-slate-50 border border-slate-100 rounded-lg flex items-center justify-between text-xs hover:border-primary-200 transition">
                           <div className="flex items-center gap-2 overflow-hidden mr-2">
-                            <FileText className="w-5 h-5 text-emerald-600 shrink-0" />
+                            <FileText className="w-5 h-5 text-primary-600 shrink-0" />
                             <div className="overflow-hidden">
                               <span className="font-bold text-slate-700 block truncate">{doc.namaDokumen}</span>
                               <span className="text-[10px] font-mono text-slate-400 truncate block">{doc.fileUrl}</span>

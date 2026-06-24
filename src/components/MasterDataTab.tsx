@@ -118,11 +118,11 @@ export default function MasterDataTab({
 
   const getSubTabIcon = () => {
     switch (subTab) {
-      case 'jenis': return <Layers className="w-4 h-4 text-emerald-600 font-bold" />;
-      case 'ruang': return <MapPin className="w-4 h-4 text-emerald-600 font-bold" />;
-      case 'teritori': return <Compass className="w-4 h-4 text-emerald-600 font-bold" />;
-      case 'peruntukan': return <Briefcase className="w-4 h-4 text-emerald-600 font-bold" />;
-      case 'kodeBarang': return <Tag className="w-4 h-4 text-emerald-600 font-bold" />;
+      case 'jenis': return <Layers className="w-4 h-4 text-primary-600 font-bold" />;
+      case 'ruang': return <MapPin className="w-4 h-4 text-primary-600 font-bold" />;
+      case 'teritori': return <Compass className="w-4 h-4 text-primary-600 font-bold" />;
+      case 'peruntukan': return <Briefcase className="w-4 h-4 text-primary-600 font-bold" />;
+      case 'kodeBarang': return <Tag className="w-4 h-4 text-primary-600 font-bold" />;
     }
   };
 
@@ -336,7 +336,7 @@ export default function MasterDataTab({
       <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h2 className="text-sm font-bold text-slate-800 uppercase tracking-widest flex items-center gap-1.5">
-            <Database className="w-4.5 h-4.5 text-emerald-600 animate-pulse" />
+            <Database className="w-4.5 h-4.5 text-primary-600 animate-pulse" />
             Pengelolaan Master Data Referensi Paroki
           </h2>
           <p className="text-xs text-slate-500 mt-1 leading-relaxed">
@@ -362,7 +362,7 @@ export default function MasterDataTab({
           onClick={() => { setSubTab('jenis'); handleCancelForm(); }}
           className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-3 rounded-lg text-[11px] font-bold uppercase transition cursor-pointer ${
             subTab === 'jenis' 
-              ? 'bg-emerald-600 text-white shadow-sm' 
+              ? 'bg-primary-600 text-white shadow-sm' 
               : 'text-slate-500 hover:text-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800'
           }`}
         >
@@ -374,7 +374,7 @@ export default function MasterDataTab({
           onClick={() => { setSubTab('teritori'); handleCancelForm(); }}
           className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-3 rounded-lg text-[11px] font-bold uppercase transition cursor-pointer ${
             subTab === 'teritori' 
-              ? 'bg-emerald-600 text-white shadow-sm' 
+              ? 'bg-primary-600 text-white shadow-sm' 
               : 'text-slate-500 hover:text-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800'
           }`}
         >
@@ -386,7 +386,7 @@ export default function MasterDataTab({
           onClick={() => { setSubTab('ruang'); handleCancelForm(); }}
           className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-3 rounded-lg text-[11px] font-bold uppercase transition cursor-pointer ${
             subTab === 'ruang' 
-              ? 'bg-emerald-600 text-white shadow-sm' 
+              ? 'bg-primary-600 text-white shadow-sm' 
               : 'text-slate-500 hover:text-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800'
           }`}
         >
@@ -398,7 +398,7 @@ export default function MasterDataTab({
           onClick={() => { setSubTab('peruntukan'); handleCancelForm(); }}
           className={`flex-1 min-w-[120px] flex items-center justify-center gap-2 py-3 rounded-lg text-[11px] font-bold uppercase transition cursor-pointer ${
             subTab === 'peruntukan' 
-              ? 'bg-emerald-600 text-white shadow-sm' 
+              ? 'bg-primary-600 text-white shadow-sm' 
               : 'text-slate-500 hover:text-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800'
           }`}
         >
@@ -410,7 +410,7 @@ export default function MasterDataTab({
           onClick={() => { setSubTab('kodeBarang'); handleCancelForm(); }}
           className={`flex-1 min-w-[160px] flex items-center justify-center gap-2 py-3 rounded-lg text-[11px] font-bold uppercase transition cursor-pointer ${
             subTab === 'kodeBarang' 
-              ? 'bg-emerald-600 text-white shadow-sm' 
+              ? 'bg-primary-600 text-white shadow-sm' 
               : 'text-slate-500 hover:text-slate-850 hover:bg-slate-50 dark:hover:bg-slate-800'
           }`}
         >
@@ -421,8 +421,8 @@ export default function MasterDataTab({
 
       {/* Success Banner Alert */}
       {successMsg && (
-        <div className="bg-emerald-50 text-emerald-800 p-4 border border-emerald-100 rounded-xl text-xs flex items-center gap-2 animate-fade-in font-medium">
-          <Check className="w-4 h-4 text-emerald-600" />
+        <div className="bg-primary-50 text-primary-800 p-4 border border-primary-100 rounded-xl text-xs flex items-center gap-2 animate-fade-in font-medium">
+          <Check className="w-4 h-4 text-primary-600" />
           {successMsg}
         </div>
       )}
@@ -449,7 +449,7 @@ export default function MasterDataTab({
                   placeholder="Cari kode atau nama..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full text-xs p-2.5 pl-9 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                  className="w-full text-xs p-2.5 pl-9 bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500"
                 />
               </div>
             </div>
@@ -489,7 +489,7 @@ export default function MasterDataTab({
                           {/* Active reference count */}
                           <td className="px-6 py-3 text-center">
                             {count > 0 ? (
-                              <span className="inline-block bg-emerald-50 text-emerald-700 border border-emerald-100 font-mono font-bold text-[10px] px-2 py-0.5 rounded-full">
+                              <span className="inline-block bg-primary-50 text-primary-700 border border-primary-100 font-mono font-bold text-[10px] px-2 py-0.5 rounded-full">
                                 {count} unit
                               </span>
                             ) : (
@@ -505,7 +505,7 @@ export default function MasterDataTab({
                                 <button
                                   onClick={() => handleStartEdit(code, name)}
                                   title="Ubah deskripsi"
-                                  className="p-1 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded transition cursor-pointer"
+                                  className="p-1 text-slate-400 hover:text-primary-600 hover:bg-primary-50 rounded transition cursor-pointer"
                                 >
                                   <Edit className="w-4 h-4" />
                                 </button>
@@ -543,12 +543,12 @@ export default function MasterDataTab({
             <div className="p-4 border-b border-slate-200 bg-slate-50/60 flex items-center gap-2">
               {editingCode ? (
                 <>
-                  <Edit className="w-4 h-4 text-emerald-600 animate-pulse" />
+                  <Edit className="w-4 h-4 text-primary-600 animate-pulse" />
                   <span className="text-xs font-bold text-slate-800 uppercase tracking-widest pl-0.5">Ubah Referensi</span>
                 </>
               ) : (
                 <>
-                  <Plus className="w-4 h-4 text-emerald-600" />
+                  <Plus className="w-4 h-4 text-primary-600" />
                   <span className="text-xs font-bold text-slate-800 uppercase tracking-widest pl-0.5">Tambah Master</span>
                 </>
               )}
@@ -585,7 +585,7 @@ export default function MasterDataTab({
                     placeholder="Contoh: 403 atau 01"
                     value={formCode}
                     onChange={(e) => setFormCode(e.target.value)}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 font-mono uppercase"
+                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500 font-mono uppercase"
                   />
                   {editingCode !== null && (
                     <span className="text-[9px] text-amber-600 font-bold block mt-1 leading-normal">
@@ -604,7 +604,7 @@ export default function MasterDataTab({
                     placeholder="Contoh: Sound System Utama"
                     value={formName}
                     onChange={(e) => setFormName(e.target.value)}
-                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500"
+                    className="w-full p-2.5 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-primary-500"
                   />
                 </div>
 
@@ -633,7 +633,7 @@ export default function MasterDataTab({
                   )}
                   <button
                     type="submit"
-                    className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2.5 rounded-lg transition shadow active:scale-98 cursor-pointer"
+                    className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold py-2.5 rounded-lg transition shadow active:scale-98 cursor-pointer"
                   >
                     {editingCode ? 'Ubah Standard' : 'Tambah Baru'}
                   </button>
@@ -643,14 +643,14 @@ export default function MasterDataTab({
           </div>
           
           {/* Helpful documentation widget under card */}
-          <div className="bg-emerald-50/50 rounded-xl p-4 border border-emerald-100 text-[11px] text-slate-600 space-y-1.5 mt-4">
-            <span className="font-bold text-emerald-900 block flex items-center gap-1">
-              <Info className="w-4 h-4 text-emerald-600 shrink-0" />
+          <div className="bg-primary-50/50 rounded-xl p-4 border border-primary-100 text-[11px] text-slate-600 space-y-1.5 mt-4">
+            <span className="font-bold text-primary-900 block flex items-center gap-1">
+              <Info className="w-4 h-4 text-primary-600 shrink-0" />
               Sistem Penomoran Hirarki [Level]
             </span>
             <p className="leading-relaxed">
               Standardisasi nomor seri visual paroki diturunkan dari segmen hirarkal: 
-              <span className="block mt-1 bg-white p-1.5 rounded font-mono text-[9px] border border-emerald-100 text-slate-500">
+              <span className="block mt-1 bg-white p-1.5 rounded font-mono text-[9px] border border-primary-100 text-slate-500">
                 [JenisAset]-[Tahun]-[Teritori]-[LetakRuang]-[Peruntukan]-[KodeNamaBarang]
               </span>
               Misalnya, kode <strong>403-2020-1-8-1-17</strong> mengindikasikan Jenis Aset <strong>403</strong> (Peralatan Elektronik), diperoleh tahun <strong>2020</strong>, ditempatkan di Teritori <strong>1</strong> (Paroki), tepatnya Letak Ruang <strong>8</strong> (Gudang/Ruang Liturgi), diperuntukkan bagi <strong>1</strong> (Gereja Utama), dengan Kode Nama Barang <strong>17</strong>.
@@ -742,7 +742,7 @@ export default function MasterDataTab({
                   handleCancelForm();
                   clearMessages();
                 }}
-                className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded-lg shadow-md transition cursor-pointer"
+                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-xs py-2.5 rounded-lg shadow-md transition cursor-pointer"
               >
                 Ya, Pulihkan
               </button>

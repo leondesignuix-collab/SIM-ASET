@@ -6,6 +6,21 @@
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-primary-50: #eef1ff;
+  --color-primary-100: #e0e5ff;
+  --color-primary-200: #c5cdff;
+  --color-primary-300: #9ba8ff;
+  --color-primary-400: #6a7dff;
+  --color-primary-450: #4a62fa;
+  --color-primary-500: #0031f6;
+  --color-primary-55: #002de4;
+  --color-primary-600: #002be5;
+  --color-primary-650: #0029d5;
+  --color-primary-700: #0026db;
+  --color-primary-800: #001db0;
+  --color-primary-900: #051a89;
+  --color-primary-950: #030e4f;
 }
 
 body {
@@ -58,7 +73,7 @@ html.dark .bg-slate-50\/70,
 html.dark .bg-slate-50\/80,
 html.dark .bg-slate-50,
 html.dark .bg-indigo-50\/50,
-html.dark .bg-emerald-50\/50 {
+html.dark .bg-primary-50\/50 {
   background-color: #0f172a !important; /* Slate 900 card background */
 }
 
@@ -124,16 +139,16 @@ html.dark .hover\:bg-slate-50\/10:hover {
   background-color: #172554 !important; /* Indigo accent hover inside tables */
 }
 
-html.dark .bg-emerald-50,
-html.dark .bg-emerald-50\/10 {
-  background-color: #022c22 !important; /* Deep emerald-green highlight */
-  border-color: #064e3b !important;
+html.dark .bg-primary-50,
+html.dark .bg-primary-50\/10 {
+  background-color: #030e4f !important; /* Deep primary-blue highlight */
+  border-color: #001462 !important;
 }
 
-html.dark .text-emerald-800,
-html.dark .text-emerald-700,
-html.dark .text-emerald-650 {
-  color: #34d399 !important; /* High contrast emerald text info */
+html.dark .text-primary-800,
+html.dark .text-primary-700,
+html.dark .text-primary-650 {
+  color: #9ba8ff !important; /* High contrast primary text info */
 }
 
 html.dark .bg-rose-50,
