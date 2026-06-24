@@ -1,0 +1,53 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Users of the Asset Management System",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "username": { "type": "string" },
+        "kategoriAkses": { "type": "string" }
+      }
+    },
+    "Asset": {
+      "title": "Asset",
+      "description": "Church Assets",
+      "type": "object",
+      "properties": {
+        "uraian": { "type": "string" },
+        "qty": { "type": "number" },
+        "satuan": { "type": "string" },
+        "tanggalPerolehan": { "type": "string" },
+        "hargaPembelian": { "type": "number" },
+        "jenisAset": { "type": "string" },
+        "tahun": { "type": "number" },
+        "teritori": { "type": "string" },
+        "peruntukan": { "type": "string" },
+        "letakRuang": { "type": "string" },
+        "noUrutSejenis": { "type": "string" },
+        "kodeNamaBarang": { "type": "string" },
+        "noSeriFinal": { "type": "string" },
+        "umurManfaat": { "type": "number" },
+        "nilaiResidu": { "type": "number" },
+        "nilaiBuku": { "type": "number" },
+        "biayaPenyusutan": { "type": "number" },
+        "kondisiBarang": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles"
+    },
+    "/assets/{assetId}": {
+      "schema": { "$ref": "#/entities/Asset" },
+      "description": "Stores asset tracking data"
+    }
+  }
+}

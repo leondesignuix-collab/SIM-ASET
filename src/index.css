@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc; /* Slate 50 background */
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-sans);
+}
+
+.mono-display {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================
+   HIGH-CONTRAST DARK MODE OVERRIDES
+   ========================================== */
+
+/* Root document transition & backgrounds */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body,
+html.dark .min-h-screen {
+  background-color: #030712 !important; /* Slate 950 / Pitch dark */
+  color: #f8fafc !important;
+}
+
+/* Structural blocks */
+html.dark header {
+  background-color: #0b0f19 !important; /* Slate 900 / dark panel */
+  border-color: #1e293b !important;
+}
+
+html.dark aside {
+  background-color: #020617 !important; /* Deepest black for sidebar separation */
+  border-color: #0f172a !important;
+}
+
+html.dark footer {
+  background-color: #0b0f19 !important;
+  border-color: #1e293b !important;
+}
+
+/* Cards & Containers */
+html.dark .bg-white,
+html.dark .bg-slate-50\/70,
+html.dark .bg-slate-50\/80,
+html.dark .bg-slate-50,
+html.dark .bg-indigo-50\/50,
+html.dark .bg-emerald-50\/50 {
+  background-color: #0f172a !important; /* Slate 900 card background */
+}
+
+html.dark .bg-slate-100 {
+  background-color: #1e293b !important;
+}
+
+html.dark .bg-slate-950\/40 {
+  background-color: rgba(2, 6, 23, 0.4) !important;
+}
+
+/* Borders and dividers */
+html.dark .border,
+html.dark .border-slate-200,
+html.dark .border-slate-100,
+html.dark .border-slate-350,
+html.dark .border-slate-300,
+html.dark .divide-slate-200,
+html.dark .divide-slate-100,
+html.dark .border-slate-200\/60 {
+  border-color: #1e293b !important;
+}
+
+/* Typography styles */
+html.dark .text-slate-950,
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-slate-705,
+html.dark .text-slate-700,
+html.dark .text-gray-900 {
+  color: #f8fafc !important; /* Radiant high-contrast white */
+}
+
+html.dark .text-slate-600,
+html.dark .text-slate-500,
+html.dark .text-slate-450,
+html.dark .text-slate-400 {
+  color: #cbd5e1 !important; /* Soft light gray for readability */
+}
+
+/* Forms & inputs */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #1e293b !important;
+  color: #ffffff !important;
+  border-color: #334155 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+html.dark select option {
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+}
+
+/* Specific component highlights */
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-slate-50\/10:hover {
+  background-color: #172554 !important; /* Indigo accent hover inside tables */
+}
+
+html.dark .bg-emerald-50,
+html.dark .bg-emerald-50\/10 {
+  background-color: #022c22 !important; /* Deep emerald-green highlight */
+  border-color: #064e3b !important;
+}
+
+html.dark .text-emerald-800,
+html.dark .text-emerald-700,
+html.dark .text-emerald-650 {
+  color: #34d399 !important; /* High contrast emerald text info */
+}
+
+html.dark .bg-rose-50,
+html.dark .bg-rose-50\/10 {
+  background-color: #4c0519 !important; /* Deep rose-red highlight */
+}
+
+html.dark .text-rose-700,
+html.dark .text-rose-600 {
+  color: #fca5a5 !important;
+}
+
+/* Overlays / Modals */
+html.dark .bg-slate-900\/60 {
+  background-color: rgba(2, 6, 23, 0.75) !important;
+}
+
+/* SVG graphs text visibility overrides */
+html.dark text {
+  fill: #cbd5e1 !important;
+}
+
+html.dark .recharts-cartesian-grid line {
+  stroke: #1e293b !important;
+}
+

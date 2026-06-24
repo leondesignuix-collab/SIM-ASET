@@ -1,0 +1,6 @@
+[
+  { "id": "usr-1", "name": "Romo Paroki", "email": "romoparoki@pringwulung.org", "role": "SUPER_ADMIN", "username": "romo", "password": "123" },
+  { "id": "usr-2", "name": "Anastasia Sekar (KOMSOS)", "email": "sekar@pringwulung.org", "role": "KOORDINATOR_TIM", "kategoriAkses": "408", "username": "sekar", "password": "123" },
+  { "id": "usr-3", "name": "Aloysius Heri (Liturgi)", "email": "heri@pringwulung.org", "role": "KOORDINATOR_TIM", "kategoriAkses": "405", "username": "heri", "password": "123" },
+  { "id": "usr-4", "name": "Theresia Lindung", "email": "theresia@pringwulung.org", "role": "PETUGAS_VIEWER", "username": "theresia", "password": "123" }
+]

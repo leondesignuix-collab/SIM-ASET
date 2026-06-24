@@ -1,0 +1,23 @@
+[
+  {
+    "id": "as-import-1",
+    "uraian": "Aset Contoh 1",
+    "qty": 1,
+    "satuan": "unit",
+    "tanggalPerolehan": "2020-01-03",
+    "hargaPembelian": 4872000,
+    "jenisAset": "403",
+    "tahun": 2020,
+    "teritori": "01",
+    "peruntukan": "01",
+    "letakRuang": "08",
+    "noUrutSejenis": "002",
+    "kodeNamaBarang": "17",
+    "noSeriFinal": "403-2024-1-8-1-17",
+    "umurManfaat": 4,
+    "nilaiResidu": 1218000,
+    "nilaiBuku": 0,
+    "biayaPenyusutan": 0,
+    "kondisiBarang": "BAIK"
+  }
+]
