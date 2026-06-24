@@ -1089,7 +1089,7 @@ export default function AssetListTab({
               </div>
 
               {/* Level 1 & Level 5: Jenis Aset & Letak Ruang */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <label className="text-xs text-slate-500 font-bold block uppercase tracking-wide">Level 1 - Jenis Aset</label>
                   <select
@@ -1119,7 +1119,7 @@ export default function AssetListTab({
               </div>
 
               {/* Level 3 & Level 4: Teritori & Peruntukan */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <label className="text-xs text-slate-500 font-bold block uppercase tracking-wide">Level 3 - Teritori</label>
                   <select
@@ -1206,7 +1206,7 @@ export default function AssetListTab({
               </div>
 
               {/* Financial & Purchase Info: Tanggal, Harga Pembelian */}
-              <div className="grid grid-cols-2 gap-3 pt-2 border-t border-slate-100">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-100">
                 <div className="space-y-1">
                   <label className="text-xs text-slate-500 font-bold block uppercase tracking-wide">Tanggal Perolehan</label>
                   <input 
@@ -1232,7 +1232,7 @@ export default function AssetListTab({
               </div>
 
               {/* Useful years & salvage values */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1">
                   <label className="text-xs text-slate-500 font-bold block uppercase tracking-wide">Umur Manfaat (Tahun)</label>
                   <input 

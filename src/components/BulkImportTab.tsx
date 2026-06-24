@@ -495,7 +495,7 @@ export default function BulkImportTab({
             Sistem pengunggahan massal mendukung akselerasi registrasi inventaris gereja dari lembar kerja Excel (.xlsx, .xls) atau CSV. Nilai depresiasi straight-line dan kode segmen penomoran No Seri Final akan dihitung otomatis oleh sistem pada saat data masuk. [1, 2, 10].
           </p>
           
-          <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 pt-2 text-[11px] text-slate-500 font-medium">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 pt-2 text-[11px] text-slate-500 font-medium">
             <div className="flex items-center gap-1">
               <span className="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
               <span><strong>Uraian</strong>: Nama barang (Wajib)</span>
@@ -679,7 +679,7 @@ export default function BulkImportTab({
               </span>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-primary-50/50 p-4 rounded-xl border border-primary-100 flex items-center gap-3">
                 <CheckCircle className="w-8 h-8 text-primary-500 shrink-0" />
                 <div>

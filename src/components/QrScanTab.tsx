@@ -543,7 +543,7 @@ export default function QrScanTab({
                     <form onSubmit={handleAddLog} className="bg-slate-50 p-4 rounded-xl border border-primary-100 space-y-3 animate-fade-in text-xs">
                       <div className="font-bold text-primary-900 border-b pb-1">Pelaporan Servis Baru</div>
                       
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="space-y-1">
                           <label className="text-[10px] text-slate-400 uppercase font-bold block">Tanggal Servis</label>
                           <input 
@@ -568,7 +568,7 @@ export default function QrScanTab({
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="space-y-1">
                           <label className="text-[10px] text-slate-400 uppercase font-bold block">Nama Vendor / Toko</label>
                           <input 
@@ -678,7 +678,7 @@ export default function QrScanTab({
                     <form onSubmit={handleAddMut} className="bg-slate-50 p-4 rounded-xl border border-primary-100 space-y-3 animate-fade-in text-xs">
                       <div className="font-bold text-primary-950 border-b pb-1">Penugasan Mutasi Letak</div>
 
-                      <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div className="space-y-1">
                           <label className="text-[10px] text-slate-400 uppercase font-bold block">Ruang Saat Ini (Asal)</label>
                           <div className="bg-slate-200 p-1.5 rounded text-xs font-semibold text-slate-600 font-mono">

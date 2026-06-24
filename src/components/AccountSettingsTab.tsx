@@ -613,7 +613,7 @@ export default function AccountSettingsTab({
                   <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Daftar Operator Terdaftar ({users.length}):</span>
                 </div>
 
-                <div className="border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                <div className="border border-slate-200 rounded-xl overflow-x-auto bg-white shadow-sm">
                   <table className="min-w-full divide-y divide-slate-100 text-left text-xs">
                     <thead className="bg-slate-50 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                       <tr>
@@ -722,7 +722,7 @@ export default function AccountSettingsTab({
                   </div>
 
                   {/* Username & Password field entry */}
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1.5 text-left">
                       <label className="text-[10px] text-slate-450 uppercase font-bold tracking-wider flex items-center gap-1">
                         <UserIcon className="w-3.5 h-3.5 text-slate-400" />

@@ -57,7 +57,9 @@ import {
   Settings,
   Sun,
   Moon,
-  LogOut
+  LogOut,
+  Menu,
+  X
 } from 'lucide-react';
 
 export default function App() {
@@ -142,6 +144,11 @@ export default function App() {
     fetchData();
   }, []); // Only on mount
 
+  const handleTabChange = (tab: 'dashboard' | 'assets' | 'qr' | 'import' | 'master' | 'account') => {
+    setActiveTab(tab);
+    setIsMobileMenuOpen(false);
+  };
+
   const [currentUser, setCurrentUser] = useState<User>(() => {
     const cached = localStorage.getItem('sim_aset_current_user');
     const parsed = cached ? JSON.parse(cached) : INITIAL_USERS[0];
@@ -184,6 +191,7 @@ export default function App() {
     const cached = localStorage.getItem('sim_aset_sidebar_collapsed');
     return cached === 'true';
   });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const cached = localStorage.getItem('sim_aset_theme');
@@ -567,12 +575,42 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row antialiased font-sans">
       
+      {/* Mobile Top Navigation Bar */}
+      <div className="md:hidden flex items-center justify-between p-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30">
+        <div className="flex items-center gap-2.5">
+          {appLogo ? (
+            <img src={appLogo} alt="Logo" className="w-8 h-8 rounded-lg object-contain bg-white" />
+          ) : (
+            <div className="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center text-white">
+              <Church className="w-4 h-4" />
+            </div>
+          )}
+          <div>
+            <h1 className="font-bold text-slate-900 dark:text-white tracking-tight text-sm">SIMAS Gereja</h1>
+          </div>
+        </div>
+        <button 
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="p-2 -mr-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </div>
+
+      {/* Mobile Sidebar Overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="md:hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* 1. Left Sidebar Navigation Panel */}
-      <aside className={`w-full ${isSidebarCollapsed ? 'md:w-20' : 'md:w-64'} bg-white dark:bg-slate-900 flex flex-col border-r border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 shrink-0 select-none md:sticky md:top-0 md:h-screen transition-all duration-300 ease-in-out z-20`}>
+      <aside className={`fixed inset-y-0 left-0 z-50 transform ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 w-72 md:w-auto ${isSidebarCollapsed ? 'md:w-20' : 'md:w-64'} bg-white dark:bg-slate-900 flex flex-col border-r border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 shrink-0 select-none md:sticky md:top-0 h-screen transition-all duration-300 ease-in-out`}>
         
         {/* Sidebar Header Brand segment */}
-        <div className={`p-4 border-b border-slate-200 dark:border-slate-800 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'} transition-all`}>
-          {!isSidebarCollapsed && (
+        <div className={`p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between transition-all`}>
+          {(!isSidebarCollapsed || isMobileMenuOpen) && (
             <div className="flex items-center gap-2.5 animate-fade-in shrink-0">
               {appLogo ? (
                 <img src={appLogo} alt="Logo" className="w-8.5 h-8.5 rounded-lg object-contain bg-white shrink-0" />
@@ -587,8 +625,8 @@ export default function App() {
               </div>
             </div>
           )}
-          {isSidebarCollapsed && (
-            <div className="w-9 h-9 bg-primary-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary-500/20 shrink-0 cursor-pointer" onClick={toggleSidebar} title="SIMAS Gereja (Perbesar)">
+          {isSidebarCollapsed && !isMobileMenuOpen && (
+            <div className="w-9 h-9 mx-auto bg-primary-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary-500/20 shrink-0 cursor-pointer" onClick={toggleSidebar} title="SIMAS Gereja (Perbesar)">
               {appLogo ? (
                 <img src={appLogo} alt="Logo" className="w-full h-full rounded-lg object-contain bg-white" />
               ) : (
@@ -597,6 +635,15 @@ export default function App() {
             </div>
           )}
           
+          {/* Close button for mobile */}
+          <button 
+            type="button"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="md:hidden p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+          >
+            <X className="w-5 h-5" />
+          </button>
+
           {/* Collapse trigger button */}
           <button 
             type="button"
@@ -615,7 +662,7 @@ export default function App() {
           )}
           
           <button
-            onClick={() => setActiveTab('dashboard')}
+            onClick={() => handleTabChange('dashboard')}
             title="Dashboard Rekapitulasi"
             className={`w-full flex items-center ${isSidebarCollapsed ? 'justify-center py-3' : 'gap-3 py-2.5 px-3'} rounded-lg text-[11px] font-bold uppercase tracking-wider transition ${
               activeTab === 'dashboard'
@@ -628,7 +675,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('assets')}
+            onClick={() => handleTabChange('assets')}
             title={`Register Aset (${assets.length})`}
             className={`w-full flex items-center ${isSidebarCollapsed ? 'justify-center py-3' : 'gap-3 py-2.5 px-3'} rounded-lg text-[11px] font-bold uppercase tracking-wider transition relative ${
               activeTab === 'assets'
@@ -645,7 +692,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('qr')}
+            onClick={() => handleTabChange('qr')}
             title="Pantau & QR Scanner Hub"
             className={`w-full flex items-center ${isSidebarCollapsed ? 'justify-center py-3 text-primary-500 hover:bg-slate-100 dark:hover:bg-slate-800' : 'gap-3 py-2.5 px-3'} rounded-lg text-[11px] font-bold uppercase tracking-wider transition ${
               activeTab === 'qr'
@@ -658,7 +705,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('import')}
+            onClick={() => handleTabChange('import')}
             title="Unggah Lembar Kerja Excel"
             className={`w-full flex items-center ${isSidebarCollapsed ? 'justify-center py-3' : 'gap-3 py-2.5 px-3'} rounded-lg text-[11px] font-bold uppercase tracking-wider transition ${
               activeTab === 'import'
@@ -671,7 +718,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('master')}
+            onClick={() => handleTabChange('master')}
             title="Konfigurasi Master Data"
             className={`w-full flex items-center ${isSidebarCollapsed ? 'justify-center py-3' : 'gap-3 py-2.5 px-3'} rounded-lg text-[11px] font-bold uppercase tracking-wider transition ${
               activeTab === 'master'
@@ -684,7 +731,7 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab('account')}
+            onClick={() => handleTabChange('account')}
             title="Pengaturan Akun"
             className={`w-full flex items-center ${isSidebarCollapsed ? 'justify-center py-3' : 'gap-3 py-2.5 px-3'} rounded-lg text-[11px] font-bold uppercase tracking-wider transition ${
               activeTab === 'account'

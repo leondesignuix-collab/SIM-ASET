@@ -426,7 +426,7 @@ export default function AssetModal({
             <div className="flex-1 space-y-3 w-full">
               <span className="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Metrik Buku Penyusutan (Straight Line)</span>
               
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-0.5">
                   <span className="text-slate-400 block font-semibold uppercase text-[9px]">Harga Pembelian</span>
                   <span className="font-mono text-xs font-bold text-slate-800">{formatRupiah(asset.hargaPembelian)}</span>
@@ -447,7 +447,7 @@ export default function AssetModal({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 pt-1.5 border-t border-slate-100/50">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1.5 border-t border-slate-100/50">
                 <div className="space-y-0.5">
                   <span className="text-slate-400 block font-semibold uppercase text-[9px]">Penyusutan Tahunan</span>
                   <span className="font-mono text-xs font-semibold text-slate-700">{formatRupiah(deprValues.biayaPenyusutan)}/th</span>
@@ -600,7 +600,7 @@ export default function AssetModal({
             {!asset.documents || asset.documents.length === 0 ? (
               <p className="text-slate-400 text-[11px] text-center py-2">Tidak ada berkas terlampir.</p>
             ) : (
-              <div className="grid grid-cols-2 gap-2 text-[11px]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
                 {asset.documents.map(doc => (
                   <div key={doc.id} className="p-2 bg-white rounded border border-slate-100 flex items-center justify-between">
                     <span className="font-bold text-slate-700 truncate" title={doc.namaDokumen}>{doc.namaDokumen}</span>
