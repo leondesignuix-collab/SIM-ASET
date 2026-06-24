@@ -1,6 +1,9 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Development rules: the app currently uses a custom auth system
+    // stored in LocalStorage. For prototype simplicity, access is open.
+    // Consider migrating to Firebase Auth for production security.
     match /{document=**} {
       allow read, write: if true;
     }

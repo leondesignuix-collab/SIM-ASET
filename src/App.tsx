@@ -99,7 +99,40 @@ export default function App() {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        // Firebase sync removed by user request
+        const remoteAssets = await getAllAssetsFromFirebase();
+        if (remoteAssets && remoteAssets.length > 0) {
+          setAssets(remoteAssets.map(asset => {
+            const depr = calculateStraightLineDepreciation(
+              asset.hargaPembelian,
+              asset.nilaiResidu,
+              asset.umurManfaat,
+              asset.tanggalPerolehan
+            );
+            return {
+              ...asset,
+              nilaiBuku: depr.nilaiBuku,
+              biayaPenyusutan: depr.biayaPenyusutan
+            };
+          }));
+        } else {
+          // Initialize Firebase with local default state
+          syncAllAssetsToFirebase(assets).catch(console.error);
+        }
+
+        const remoteUsers = await getAllUsersFromFirebase();
+        if (remoteUsers && remoteUsers.length > 0) {
+          setUsers(remoteUsers.map(user => {
+            const defaultValue = INITIAL_USERS.find(iu => iu.id === user.id || iu.email === user.email);
+            return {
+              ...user,
+              username: user.username || defaultValue?.username || user.email.split('@')[0],
+              password: user.password || defaultValue?.password || '123'
+            };
+          }));
+        } else {
+          // Initialize Firebase with local default state
+          syncAllUsersToFirebase(users).catch(console.error);
+        }
         setIsLoading(false);
       } catch (err) {
         console.error("fetch error", err);

@@ -1,53 +1,40 @@
 {
-  "entities": {
-    "User": {
-      "title": "User",
-      "description": "Users of the Asset Management System",
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "email": { "type": "string" },
-        "role": { "type": "string" },
-        "username": { "type": "string" },
-        "kategoriAkses": { "type": "string" }
-      }
+  "project_id": "prismatic-upgrade-1nzsc",
+  "collections": [
+    {
+      "name": "assets",
+      "fields": [
+        { "name": "uraian", "type": "string" },
+        { "name": "qty", "type": "number" },
+        { "name": "satuan", "type": "string" },
+        { "name": "tanggalPerolehan", "type": "string" },
+        { "name": "hargaPembelian", "type": "number" },
+        { "name": "jenisAset", "type": "string" },
+        { "name": "tahun", "type": "number" },
+        { "name": "teritori", "type": "string" },
+        { "name": "peruntukan", "type": "string" },
+        { "name": "letakRuang", "type": "string" },
+        { "name": "noUrutSejenis", "type": "string" },
+        { "name": "kodeNamaBarang", "type": "string" },
+        { "name": "noSeriFinal", "type": "string" },
+        { "name": "umurManfaat", "type": "number" },
+        { "name": "nilaiResidu", "type": "number" },
+        { "name": "kondisiBarang", "type": "string" },
+        { "name": "bidang", "type": "string" },
+        { "name": "createdAt", "type": "string" },
+        { "name": "updatedAt", "type": "string" }
+      ]
     },
-    "Asset": {
-      "title": "Asset",
-      "description": "Church Assets",
-      "type": "object",
-      "properties": {
-        "uraian": { "type": "string" },
-        "qty": { "type": "number" },
-        "satuan": { "type": "string" },
-        "tanggalPerolehan": { "type": "string" },
-        "hargaPembelian": { "type": "number" },
-        "jenisAset": { "type": "string" },
-        "tahun": { "type": "number" },
-        "teritori": { "type": "string" },
-        "peruntukan": { "type": "string" },
-        "letakRuang": { "type": "string" },
-        "noUrutSejenis": { "type": "string" },
-        "kodeNamaBarang": { "type": "string" },
-        "noSeriFinal": { "type": "string" },
-        "umurManfaat": { "type": "number" },
-        "nilaiResidu": { "type": "number" },
-        "nilaiBuku": { "type": "number" },
-        "biayaPenyusutan": { "type": "number" },
-        "kondisiBarang": { "type": "string" },
-        "createdAt": { "type": "string" },
-        "updatedAt": { "type": "string" }
-      }
+    {
+      "name": "users",
+      "fields": [
+        { "name": "name", "type": "string" },
+        { "name": "email", "type": "string" },
+        { "name": "role", "type": "string" },
+        { "name": "username", "type": "string" },
+        { "name": "password", "type": "string" },
+        { "name": "kategoriAkses", "type": "string" }
+      ]
     }
-  },
-  "firestore": {
-    "/users/{userId}": {
-      "schema": { "$ref": "#/entities/User" },
-      "description": "Stores user profiles"
-    },
-    "/assets/{assetId}": {
-      "schema": { "$ref": "#/entities/Asset" },
-      "description": "Stores asset tracking data"
-    }
-  }
+  ]
 }
