@@ -142,6 +142,10 @@ export default function App() {
       };
     });
   });
+
+  const [appLogo, setAppLogo] = useState<string | null>(() => {
+    return localStorage.getItem('sim_aset_paroki_logo');
+  });
   const [activeTab, setActiveTab] = useState<'dashboard' | 'assets' | 'qr' | 'import' | 'master' | 'account'>('dashboard');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(() => {
     const cached = localStorage.getItem('sim_aset_sidebar_collapsed');
@@ -240,6 +244,22 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('sim_aset_registered_users', JSON.stringify(users));
   }, [users]);
+
+  useEffect(() => {
+    if (appLogo) {
+      localStorage.setItem('sim_aset_paroki_logo', appLogo);
+      const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+      if (link) {
+        link.href = appLogo;
+      }
+    } else {
+      localStorage.removeItem('sim_aset_paroki_logo');
+      const link = document.querySelector("link[rel~='icon']") as HTMLLinkElement;
+      if (link) {
+        link.href = '/vite.svg'; // Default fallback
+      }
+    }
+  }, [appLogo]);
 
   // 3. Dynamic ticking clock matching local times & server Z-time
   useEffect(() => {
@@ -506,6 +526,7 @@ export default function App() {
         users={users} 
         onLoginSuccess={handleLoginSuccess}
         isDarkMode={isDarkMode}
+        appLogo={appLogo}
       />
     );
   }
@@ -520,9 +541,13 @@ export default function App() {
         <div className={`p-4 border-b border-slate-200 dark:border-slate-800 flex items-center ${isSidebarCollapsed ? 'justify-center' : 'justify-between'} transition-all`}>
           {!isSidebarCollapsed && (
             <div className="flex items-center gap-2.5 animate-fade-in shrink-0">
-              <div className="w-8.5 h-8.5 bg-primary-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary-500/20 shrink-0">
-                <Church className="w-5 h-5" />
-              </div>
+              {appLogo ? (
+                <img src={appLogo} alt="Logo" className="w-8.5 h-8.5 rounded-lg object-contain bg-white shrink-0" />
+              ) : (
+                <div className="w-8.5 h-8.5 bg-primary-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary-500/20 shrink-0">
+                  <Church className="w-5 h-5" />
+                </div>
+              )}
               <div>
                 <h1 className="font-bold text-slate-900 dark:text-white tracking-tight text-xs md:text-sm font-display">SIMAS Gereja</h1>
                 <p className="text-[9px] text-slate-500 uppercase tracking-widest leading-none mt-0.5">Paroki Pringwulung</p>
@@ -531,7 +556,11 @@ export default function App() {
           )}
           {isSidebarCollapsed && (
             <div className="w-9 h-9 bg-primary-500 rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary-500/20 shrink-0 cursor-pointer" onClick={toggleSidebar} title="SIMAS Gereja (Perbesar)">
-              <Church className="w-5 h-5" />
+              {appLogo ? (
+                <img src={appLogo} alt="Logo" className="w-full h-full rounded-lg object-contain bg-white" />
+              ) : (
+                <Church className="w-5 h-5" />
+              )}
             </div>
           )}
           
@@ -829,6 +858,8 @@ export default function App() {
               onAddUser={handleAddUser}
               onDeleteUser={handleDeleteUser}
               assets={assets}
+              appLogo={appLogo}
+              setAppLogo={setAppLogo}
             />
           )}
 

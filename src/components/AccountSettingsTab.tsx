@@ -20,7 +20,9 @@ import {
   UserPlus,
   Trash2,
   LockKeyhole,
-  Database
+  Database,
+  Church,
+  Upload
 } from 'lucide-react';
 
 interface AccountSettingsTabProps {
@@ -31,6 +33,8 @@ interface AccountSettingsTabProps {
   onAddUser: (newUser: User) => void;
   onDeleteUser: (userId: string) => void;
   assets: Asset[];
+  appLogo?: string | null;
+  setAppLogo?: (logo: string | null) => void;
 }
 
 export default function AccountSettingsTab({
@@ -40,7 +44,9 @@ export default function AccountSettingsTab({
   users = [],
   onAddUser,
   onDeleteUser,
-  assets
+  assets,
+  appLogo,
+  setAppLogo
 }: AccountSettingsTabProps) {
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
@@ -485,6 +491,81 @@ export default function AccountSettingsTab({
           </div>
         </div>
 
+      </div>
+
+      {/* 🏛 PENGATURAN IDENTITAS PAROKI */}
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden animate-fade-in" id="parish-identity-section">
+        <div className="bg-slate-50 border-b border-slate-200 px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="p-2 bg-primary-50 text-primary-700 rounded-lg">
+              <Church className="w-5 h-5 shrink-0" />
+            </div>
+            <div className="text-left">
+              <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest text-left">Pengaturan Identitas Paroki</h3>
+              <p className="text-xs text-slate-500 text-left mt-0.5">Ubah logo dan identitas visual aplikasi</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="p-6">
+          <div className="space-y-4">
+            <label className="text-xs font-bold text-slate-800 uppercase tracking-widest block">Logo Aplikasi / Paroki</label>
+            <div className="flex items-start gap-6">
+              <div className="w-24 h-24 bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl flex items-center justify-center shrink-0 overflow-hidden text-slate-400 p-2">
+                {appLogo ? (
+                  <img src={appLogo} alt="Logo Paroki" className="w-full h-full object-contain" />
+                ) : (
+                  <Church className="w-8 h-8" />
+                )}
+              </div>
+              <div className="space-y-3 flex-1">
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Unggah gambar logo (format PNG/JPG) dengan ukuran yang proporsional. Direkomendasikan bentuk persegi dengan latar belakang transparan.
+                </p>
+                <div className="flex items-center gap-3">
+                  <label className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-lg text-xs font-bold cursor-pointer transition flex items-center gap-2 shadow-sm">
+                    <Upload className="w-4 h-4" />
+                    Pilih Berkas Logo
+                    <input 
+                      type="file" 
+                      accept="image/png, image/jpeg, image/jpg, image/svg+xml"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        
+                        // Validasi ukuran max 500KB untuk LocalStorage
+                        if (file.size > 500 * 1024) {
+                          alert("Ukuran gambar maksimal 500KB agar tidak memberatkan memori browser.");
+                          return;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = (ev) => {
+                          if (ev.target?.result && setAppLogo) {
+                            setAppLogo(ev.target.result as string);
+                          }
+                        };
+                        reader.readAsDataURL(file);
+                      }}
+                    />
+                  </label>
+                  {appLogo && (
+                    <button
+                      type="button"
+                      onClick={() => setAppLogo && setAppLogo(null)}
+                      className="text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                      Hapus
+                    </button>
+                  )}
+                </div>
+                <p className="text-[10px] text-slate-400 font-mono">Max: 500KB. Tersimpan di memori browser lokal.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* 👥 MANAJEMEN PENGGUNA PAROKI - ONLY FOR SUPER ADMIN */}

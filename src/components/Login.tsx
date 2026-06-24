@@ -6,9 +6,10 @@ interface LoginProps {
   users: User[];
   onLoginSuccess: (user: User) => void;
   isDarkMode: boolean;
+  appLogo?: string | null;
 }
 
-export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps) {
+export default function Login({ users, onLoginSuccess, isDarkMode, appLogo }: LoginProps) {
   const [usernameInput, setUsernameInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -57,14 +58,18 @@ export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps)
         
         {/* Upper Brand Icon & Title */}
         <div className="text-center mb-6">
-          <div className="inline-flex w-14 h-14 bg-primary-600 dark:bg-primary-500 rounded-2xl items-center justify-center text-white shadow-xl shadow-primary-500/20 mb-3.5 transition-transform hover:rotate-3">
-            <Church className="w-8 h-8" />
-          </div>
+          {appLogo ? (
+            <img src={appLogo} alt="Logo Paroki" className="mx-auto w-16 h-16 rounded-2xl object-contain bg-white shadow-xl shadow-slate-200/50 dark:shadow-none mb-3.5" />
+          ) : (
+            <div className="inline-flex w-14 h-14 bg-primary-600 dark:bg-primary-500 rounded-2xl items-center justify-center text-white shadow-xl shadow-primary-500/20 mb-3.5 transition-transform hover:rotate-3">
+              <Church className="w-8 h-8" />
+            </div>
+          )}
           <h1 className="font-extrabold text-2xl tracking-tight text-slate-900 dark:text-white font-display">
             SIMAS GEREJA
           </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider mt-1">
-            Sistem Penatausahaan Aset Paroki Pringwulung
+            Sistem Penatausahaan Aset Gereja Paroki Pringwulung
           </p>
         </div>
 
@@ -169,7 +174,7 @@ export default function Login({ users, onLoginSuccess, isDarkMode }: LoginProps)
 
         {/* Footer info */}
         <p className="text-center text-[10px] text-slate-400 dark:text-slate-500 mt-6 font-mono">
-          KEPENGURUSAN GEREJA SANTO YOHANES RASUL PRINGWULUNG
+          GEREJA SANTO YOHANES RASUL PRINGWULUNG YOGYAKARTA
         </p>
       </div>
     </div>
