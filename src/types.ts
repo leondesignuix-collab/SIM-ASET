@@ -103,7 +103,9 @@ export const BIDANG_MAP: Record<string, string> = {
   "BDG-03": "Bidang Paguyuban",
   "BDG-04": "Bidang Kemasyarakatan",
   "BDG-05": "Tim Aset & Pemeliharaan",
-  "BDG-06": "Sekretariat Paroki"
+  "BDG-06": "Sekretariat Paroki",
+  "BDG-07": "Komsos (Komunikasi Sosial)",
+  "BDG-08": "Tim P3K / Kesehatan"
 };
 
 export const JENIS_ASET_MAP: Record<string, string> = {

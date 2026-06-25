@@ -82,6 +82,7 @@ export default function AssetListTab({
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedCondition, setSelectedCondition] = useState('');
+  const [selectedBidang, setSelectedBidang] = useState('');
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -90,7 +91,7 @@ export default function AssetListTab({
   // Reset pagination to first page when filtering
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, selectedCategory, selectedLocation, selectedCondition]);
+  }, [searchTerm, selectedCategory, selectedLocation, selectedCondition, selectedBidang]);
 
   // Form states
   const [showForm, setShowForm] = useState(false);
@@ -179,10 +180,11 @@ export default function AssetListTab({
       const matchCategory = selectedCategory === '' || asset.jenisAset === selectedCategory;
       const matchLocation = selectedLocation === '' || asset.letakRuang === selectedLocation;
       const matchCondition = selectedCondition === '' || asset.kondisiBarang === selectedCondition;
+      const matchBidang = selectedBidang === '' || asset.bidang === selectedBidang;
 
-      return matchSearch && matchCategory && matchLocation && matchCondition;
+      return matchSearch && matchCategory && matchLocation && matchCondition && matchBidang;
     });
-  }, [assets, searchTerm, selectedCategory, selectedLocation, selectedCondition, jMap]);
+  }, [assets, searchTerm, selectedCategory, selectedLocation, selectedCondition, selectedBidang, jMap]);
 
   // Pagination calculation
   const totalItems = filteredAssets.length;
@@ -427,6 +429,7 @@ export default function AssetListTab({
     setSelectedCategory('');
     setSelectedLocation('');
     setSelectedCondition('');
+    setSelectedBidang('');
   };
 
   const handleExportCSV = () => {
@@ -657,6 +660,18 @@ export default function AssetListTab({
             ))}
           </select>
 
+          {/* Bidang Dropdown */}
+          <select 
+            value={selectedBidang} 
+            onChange={(e) => setSelectedBidang(e.target.value)}
+            className="bg-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border-none rounded-md px-2.5 py-1.5 text-slate-600 font-medium cursor-pointer text-xs focus:ring-1 focus:ring-primary-500"
+          >
+            <option value="">Semua Bidang</option>
+            {Object.entries(bMap).map(([code, name]) => (
+              <option key={code} value={code}>[{code}] {name}</option>
+            ))}
+          </select>
+
           {/* Condition Dropdown */}
           <select 
             value={selectedCondition} 
@@ -669,7 +684,7 @@ export default function AssetListTab({
             <option value="RUSAK_BERAT">Rusak Berat</option>
           </select>
 
-          {(selectedCategory || selectedLocation || selectedCondition || searchTerm) && (
+          {(selectedCategory || selectedLocation || selectedCondition || selectedBidang || searchTerm) && (
             <button 
               onClick={resetFilters}
               className="text-primary-600 font-bold hover:text-primary-800 underline uppercase tracking-wider text-[10px] pl-1 cursor-pointer"
