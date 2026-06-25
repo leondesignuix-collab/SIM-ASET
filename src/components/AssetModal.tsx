@@ -611,6 +611,35 @@ export default function AssetModal({
             )}
           </div>
 
+          {/* History Logs */}
+          <div className="bg-slate-50/40 p-4 border border-slate-100 rounded-xl space-y-2.5">
+            <span className="font-bold text-slate-700 uppercase tracking-wide block flex items-center gap-1 text-xs">
+              <Activity className="w-4 h-4 text-indigo-500 shrink-0" />
+              Riwayat Perubahan Aset ({asset.historyLogs?.length || 0})
+            </span>
+
+            {!asset.historyLogs || asset.historyLogs.length === 0 ? (
+              <p className="text-slate-400 text-[11px] text-center py-2">Belum ada riwayat perubahan yang tercatat.</p>
+            ) : (
+              <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                {asset.historyLogs.map(log => (
+                  <div key={log.id} className="p-3 bg-white rounded-lg border border-slate-100 space-y-1.5 text-[11px]">
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider text-white ${log.action === 'CREATE' ? 'bg-emerald-500' : log.action === 'UPDATE' ? 'bg-blue-500' : log.action === 'MUTASI' ? 'bg-amber-500' : log.action === 'MAINTENANCE' ? 'bg-purple-500' : 'bg-rose-500'}`}>
+                          {log.action}
+                        </span>
+                        <span className="font-bold text-slate-700">Oleh: {log.userName}</span>
+                      </div>
+                      <span className="text-slate-400 font-mono text-[10px]">{new Date(log.timestamp).toLocaleString('id-ID')}</span>
+                    </div>
+                    <p className="text-slate-600 leading-snug">{log.details}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
         </div>
 
         {/* Modal Footer */}

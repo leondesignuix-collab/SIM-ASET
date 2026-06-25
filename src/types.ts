@@ -45,6 +45,16 @@ export interface AssetDocument {
   createdAt: string;
 }
 
+export interface AssetHistoryLog {
+  id: string;
+  assetId: string;
+  action: 'CREATE' | 'UPDATE' | 'DELETE' | 'MUTASI' | 'MAINTENANCE';
+  userId: string;
+  userName: string;
+  timestamp: string;
+  details: string;
+}
+
 export interface Asset {
   id: string;
   uraian: string;
@@ -73,6 +83,7 @@ export interface Asset {
   maintenanceLogs?: MaintenanceLog[];
   mutations?: AssetMutation[];
   documents?: AssetDocument[];
+  historyLogs?: AssetHistoryLog[];
 }
 
 export interface DashboardStats {

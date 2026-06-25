@@ -7,20 +7,20 @@
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-primary-50: #eef1ff;
-  --color-primary-100: #e0e5ff;
-  --color-primary-200: #c5cdff;
-  --color-primary-300: #9ba8ff;
-  --color-primary-400: #6a7dff;
-  --color-primary-450: #4a62fa;
-  --color-primary-500: #0031f6;
-  --color-primary-55: #002de4;
-  --color-primary-600: #002be5;
-  --color-primary-650: #0029d5;
-  --color-primary-700: #0026db;
-  --color-primary-800: #001db0;
-  --color-primary-900: #051a89;
-  --color-primary-950: #030e4f;
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-200: #a7f3d0;
+  --color-primary-300: #6ee7b7;
+  --color-primary-400: #34d399;
+  --color-primary-450: #10b981;
+  --color-primary-500: #059669;
+  --color-primary-55: #047857;
+  --color-primary-600: #047857;
+  --color-primary-650: #065f46;
+  --color-primary-700: #065f46;
+  --color-primary-800: #064e3b;
+  --color-primary-900: #022c22;
+  --color-primary-950: #011611;
 }
 
 body {

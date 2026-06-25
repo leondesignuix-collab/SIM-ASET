@@ -12,6 +12,7 @@ import {
   MaintenanceLog, 
   AssetMutation, 
   AssetDocument,
+  AssetHistoryLog,
   generateNoSeriFinal,
   calculateStraightLineDepreciation,
   JENIS_ASET_MAP,
@@ -362,23 +363,53 @@ export default function App() {
 
   // Actions: Add new Asset
   const handleAddAsset = (newAsset: Asset) => {
-    const nextAssets = [newAsset, ...assets];
+    const log: AssetHistoryLog = {
+      id: Date.now().toString(),
+      assetId: newAsset.id,
+      action: 'CREATE',
+      userId: currentUser.id,
+      userName: currentUser.name,
+      timestamp: new Date().toISOString(),
+      details: 'Menambahkan aset baru ke dalam sistem'
+    };
+    const assetWithLog = { ...newAsset, historyLogs: [log] };
+    const nextAssets = [assetWithLog, ...assets];
     setAssets(nextAssets);
-    saveAssetToFirebase(newAsset).catch(console.error);
+    saveAssetToFirebase(assetWithLog).catch(console.error);
   };
 
   // Actions: Update existing Asset
   const handleUpdateAsset = (updatedAsset: Asset) => {
-    const nextAssets = assets.map(a => a.id === updatedAsset.id ? updatedAsset : a);
+    const oldAsset = assets.find(a => a.id === updatedAsset.id);
+    let detailsStr = 'Memperbarui data aset';
+    if (oldAsset && oldAsset.kondisiBarang !== updatedAsset.kondisiBarang) {
+      detailsStr = `Memperbarui kondisi barang dari ${oldAsset.kondisiBarang} menjadi ${updatedAsset.kondisiBarang}`;
+    }
+
+    const log: AssetHistoryLog = {
+      id: Date.now().toString(),
+      assetId: updatedAsset.id,
+      action: 'UPDATE',
+      userId: currentUser.id,
+      userName: currentUser.name,
+      timestamp: new Date().toISOString(),
+      details: detailsStr
+    };
+    const assetWithLog = { 
+      ...updatedAsset, 
+      historyLogs: updatedAsset.historyLogs ? [log, ...updatedAsset.historyLogs] : [log] 
+    };
+
+    const nextAssets = assets.map(a => a.id === assetWithLog.id ? assetWithLog : a);
     setAssets(nextAssets);
-    saveAssetToFirebase(updatedAsset).catch(console.error);
+    saveAssetToFirebase(assetWithLog).catch(console.error);
     
     // update scan focus if it was active
-    if (scannedAsset && scannedAsset.id === updatedAsset.id) {
-      setScannedAsset(updatedAsset);
+    if (scannedAsset && scannedAsset.id === assetWithLog.id) {
+      setScannedAsset(assetWithLog);
     }
-    if (selectedAsset && selectedAsset.id === updatedAsset.id) {
-      setSelectedAsset(updatedAsset);
+    if (selectedAsset && selectedAsset.id === assetWithLog.id) {
+      setSelectedAsset(assetWithLog);
     }
   };
 
@@ -417,11 +448,23 @@ export default function App() {
         const logs = asset.maintenanceLogs ? [...asset.maintenanceLogs, log] : [log];
         // Sort logs descending (latest first)
         logs.sort((a, b) => new Date(b.tanggalServis).getTime() - new Date(a.tanggalServis).getTime());
+        
+        const historyLog: AssetHistoryLog = {
+          id: Date.now().toString(),
+          assetId: assetId,
+          action: 'MAINTENANCE',
+          userId: currentUser.id,
+          userName: currentUser.name,
+          timestamp: new Date().toISOString(),
+          details: `Melakukan servis/pemeliharaan: ${log.deskripsi}`
+        };
+
         const updatedAsset = {
           ...asset,
           maintenanceLogs: logs,
           kondisiBarang: 'BAIK' as const, // Automatically restoring condition to BAIK after service logging!
-          updatedAt: new Date().toISOString()
+          updatedAt: new Date().toISOString(),
+          historyLogs: asset.historyLogs ? [historyLog, ...asset.historyLogs] : [historyLog]
         };
         saveAssetToFirebase(updatedAsset).catch(console.error);
         return updatedAsset;
@@ -457,6 +500,16 @@ export default function App() {
         );
 
         const mutList = asset.mutations ? [mutation, ...asset.mutations] : [mutation];
+        
+        const historyLog: AssetHistoryLog = {
+          id: Date.now().toString(),
+          assetId: assetId,
+          action: 'MUTASI',
+          userId: currentUser.id,
+          userName: currentUser.name,
+          timestamp: new Date().toISOString(),
+          details: `Mutasi ruang dari ${letakRuangMap[asset.letakRuang] || asset.letakRuang} ke ${letakRuangMap[mutation.ruangTujuan] || mutation.ruangTujuan}`
+        };
 
         const updatedAsset = {
           ...asset,
@@ -464,7 +517,8 @@ export default function App() {
           noSeriFinal: nextCode, // update automatic serial identifier
           nilaiBuku: updatedDepr.nilaiBuku,
           mutations: mutList,
-          updatedAt: new Date().toISOString()
+          updatedAt: new Date().toISOString(),
+          historyLogs: asset.historyLogs ? [historyLog, ...asset.historyLogs] : [historyLog]
         };
         saveAssetToFirebase(updatedAsset).catch(console.error);
         return updatedAsset;
