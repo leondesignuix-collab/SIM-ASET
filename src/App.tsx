@@ -196,7 +196,10 @@ export default function App() {
   const [selectedAsset, setSelectedAsset] = useState<Asset | null>(null);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const cached = localStorage.getItem('sim_aset_theme');
-    return cached === 'dark';
+    if (cached !== null) {
+      return cached === 'dark';
+    }
+    return true;
   });
 
   useEffect(() => {

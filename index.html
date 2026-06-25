@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SIM ASET GEREJA ST YOHANES RASUL PRINGWULUNG</title>
+    <script>
+      const theme = localStorage.getItem('sim_aset_theme');
+      if (theme === 'dark' || theme === null) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
