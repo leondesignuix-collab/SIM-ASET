@@ -1004,7 +1004,7 @@ export default function App() {
 
         {/* Dynamic bottom layout signature footer */}
         <footer className="bg-white border-t border-slate-200 py-4 px-6 text-center text-[10px] font-mono text-slate-400 mt-auto flex flex-col md:flex-row items-center justify-between gap-3">
-          <span>© 1998 - 2026 KEPENGURUSAN GEREJA SANTO YOHANES RASUL PRINGWULUNG.</span>
+          <span>© 1997 - 2026 GEREJA SANTO YOHANES RASUL PRINGWULUNG.</span>
           <span className="text-[9px] bg-slate-50 px-2.5 py-1 rounded border inline-flex items-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5 text-primary-500" />
             HIGH DENSITY DATA ENGINE • RECALCULATED SECURE STATE

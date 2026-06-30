@@ -23,7 +23,8 @@ import {
   Asset,
   DashboardStats,
   formatRupiah,
-  JENIS_ASET_MAP
+  JENIS_ASET_MAP,
+  BIDANG_MAP
 } from '../types';
 import { ShieldAlert, TrendingDown, ClipboardList, Wallet, Sparkles, TrendingUp } from 'lucide-react';
 
@@ -88,6 +89,7 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
     let totalUnits = 0;
 
     const catMap: Record<string, { original: number; book: number; count: number }> = {};
+    const bidangMap: Record<string, { count: number }> = {};
     const condMap = {
       BAIK: 0,
       RUSAK_RINGAN: 0,
@@ -97,6 +99,10 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
     // Initialize categories
     Object.keys(activeJenisAsetMap).forEach(k => {
       catMap[k] = { original: 0, book: 0, count: 0 };
+    });
+
+    Object.keys(BIDANG_MAP).forEach(k => {
+      bidangMap[k] = { count: 0 };
     });
 
     const expiringAssetsList: Asset[] = [];
@@ -117,6 +123,15 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
       catMap[catCode].original += (Number(asset.hargaPembelian) || 0) * qty;
       catMap[catCode].book += (Number(asset.nilaiBuku) || 0) * qty;
       catMap[catCode].count += qty;
+
+      // Group by bidang
+      const bidangCode = asset.bidang;
+      if (bidangCode) {
+        if (!bidangMap[bidangCode]) {
+          bidangMap[bidangCode] = { count: 0 };
+        }
+        bidangMap[bidangCode].count += qty;
+      }
 
       // Group by conditions
       const cond = asset.kondisiBarang || 'BAIK';
@@ -153,6 +168,11 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
       { condition: 'RUSAK_BERAT', count: condMap.RUSAK_BERAT }
     ];
 
+    const bidangDistribution = Object.entries(bidangMap).map(([code, data]) => ({
+      bidang: BIDANG_MAP[code] || `Bidang ${code}`,
+      count: data.count
+    }));
+
     // Sort expiring assets by book value descending
     expiringAssetsList.sort((a, b) => b.nilaiBuku - a.nilaiBuku);
 
@@ -163,6 +183,7 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
       totalUnits,
       categoryDistribution,
       conditionDistribution,
+      bidangDistribution,
       expiringAssets: expiringAssetsList.slice(0, 5) // top 5
     };
   }, [assets, activeJenisAsetMap]);
@@ -256,6 +277,48 @@ export default function DashboardTab({ assets, onSelectAsset, jenisAsetMap }: Da
                 <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
                 <Bar name="originalValue" dataKey="originalValue" fill="#cbd5e1" radius={[4, 4, 0, 0]} barSize={25} />
                 <Bar name="bookValue" dataKey="bookValue" fill="#10b981" radius={[4, 4, 0, 0]} barSize={25} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Full-width Row: Bar Chart per Bidang */}
+        <div className="w-full bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <h3 className="text-sm font-bold text-slate-800 uppercase tracking-wide">Jumlah Aset per Bidang</h3>
+              <p className="text-xs text-slate-400">Komparasi kuantitas aset yang dikelola oleh setiap bidang (Komsos, P3K, dll)</p>
+            </div>
+          </div>
+          <div className="h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={stats.bidangDistribution} margin={{ top: 15, right: 15, left: 20, bottom: 65 }}>
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                <XAxis 
+                  dataKey="bidang" 
+                  tick={{ fill: '#64748b', fontSize: 10, fontWeight: '500' }}
+                  axisLine={false}
+                  tickLine={false}
+                  interval={0}
+                  angle={-30}
+                  textAnchor="end"
+                  height={60}
+                />
+                <YAxis 
+                  width={40}
+                  tick={{ fill: '#64748b', fontSize: 10 }}
+                  axisLine={false}
+                  tickLine={false}
+                />
+                <Tooltip 
+                  formatter={(value: any) => [`${value} unit`, 'Jumlah Aset']}
+                  contentStyle={{ background: '#0f172a', border: 'none', borderRadius: '8px', color: '#fff' }}
+                />
+                <Bar name="Jumlah Aset" dataKey="count" fill="#3b82f6" radius={[4, 4, 0, 0]} barSize={35}>
+                  {stats.bidangDistribution.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill={['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#0ea5e9', '#ec4899', '#f97316'][index % 8]} />
+                  ))}
+                </Bar>
               </BarChart>
             </ResponsiveContainer>
           </div>

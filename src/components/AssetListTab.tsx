@@ -15,6 +15,7 @@ import {
   formatRupiah, 
   generateNoSeriFinal,
   calculateStraightLineDepreciation,
+  generateQrValue,
   KondisiBarang
 } from '../types';
 import { 
@@ -1608,7 +1609,7 @@ export default function AssetListTab({
                           {/* Left: Vector QR Code */}
                           <div className="shrink-0 p-1 bg-white border border-slate-200 rounded-lg shadow-inner">
                             <QRCodeCanvas
-                              value={asset.noSeriFinal}
+                              value={generateQrValue(asset)}
                               size={labelSize === 'standard' ? 76 : 56}
                               level="H"
                               includeMargin={false}

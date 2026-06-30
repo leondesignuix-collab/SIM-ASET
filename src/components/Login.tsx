@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { User } from '../types';
-import { Church, Lock, User as UserIcon, Eye, EyeOff, AlertCircle, LogIn } from 'lucide-react';
+import { Lock, User as UserIcon, Eye, EyeOff, AlertCircle, LogIn } from 'lucide-react';
 
 interface LoginProps {
   users: User[];
@@ -64,8 +64,8 @@ export default function Login({ users, onLoginSuccess, isDarkMode, appLogo }: Lo
         <div className="absolute inset-0 bg-gradient-to-r from-primary-900/50 to-transparent"></div>
         
         <div className="absolute bottom-12 left-12 right-12 text-white z-10 animate-fade-in">
-          <div className="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 border border-white/20">
-            <Church className="w-8 h-8 text-white" />
+          <div className="w-16 h-16 bg-white/5 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 border border-white/5">
+            <img src="/pw.png" alt="Paroki Logo" className="w-10 h-10 object-contain drop-shadow-md" />
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold font-display drop-shadow-md leading-tight">
             Penatausahaan Aset <br/> Paroki Pringwulung

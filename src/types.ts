@@ -93,6 +93,7 @@ export interface DashboardStats {
   totalUnits: number;
   categoryDistribution: { category: string; count: number; originalValue: number; bookValue: number }[];
   conditionDistribution: { condition: string; count: number }[];
+  bidangDistribution: { bidang: string; count: number }[];
   expiringAssets: Asset[];
 }
 
@@ -222,6 +223,18 @@ export function generateNoSeriFinal(asset: Partial<Asset>): string {
   const cleanKodeBarang = /^\d+$/.test(kodeBarang) ? String(parseInt(kodeBarang, 10)) : kodeBarang;
 
   return `${jenis}-${tahun}-${cleanTeri}-${cleanRuang}-${cleanPeruntukan}-${cleanKodeBarang}`;
+}
+
+// Generate human-readable string for QR Code scanner payload
+export function generateQrValue(asset: Asset): string {
+  const bidangName = BIDANG_MAP[asset.bidang] || asset.bidang;
+  const letakName = LETAK_RUANG_MAP[asset.letakRuang] || asset.letakRuang;
+  return `No Seri: ${asset.noSeriFinal}
+Nama Barang: ${asset.uraian}
+Tahun: ${asset.tahun}
+Bidang: ${bidangName}
+Letak Ruang: ${letakName}
+Kondisi: ${asset.kondisiBarang}`;
 }
 
 import initialUsers from "./initial_users.json";

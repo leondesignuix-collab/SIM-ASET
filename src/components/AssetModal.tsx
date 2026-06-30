@@ -12,7 +12,8 @@ import {
   PERUNTUKAN_MAP, 
   KODE_NAMA_BARANG_MAP,
   formatRupiah, 
-  calculateStraightLineDepreciation 
+  calculateStraightLineDepreciation,
+  generateQrValue
 } from '../types';
 import { 
   X, 
@@ -385,7 +386,7 @@ export default function AssetModal({
               <div className="p-1.5 rounded-lg bg-white border border-slate-100 shadow-inner">
                 <QRCodeCanvas
                   id="asset-qr-code-canvas"
-                  value={asset.noSeriFinal}
+                  value={generateQrValue(asset)}
                   size={100}
                   level="H"
                   includeMargin={false}

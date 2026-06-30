@@ -12,6 +12,7 @@ import {
   formatRupiah, 
   calculateStraightLineDepreciation, 
   generateNoSeriFinal,
+  generateQrValue,
   MaintenanceLog, 
   AssetMutation, 
   AssetDocument 
@@ -96,11 +97,18 @@ export default function QrScanTab({
   });
 
   // Scan simulator execution
-  const executeScan = (serialCode: string) => {
-    if (!serialCode) return;
+  const executeScan = (scannedData: string) => {
+    if (!scannedData) return;
     setIsScanning(true);
     setScanMessage('Kamera diaktifkan... Mengunci fokus.');
     
+    // Parse the data in case it's the full QR payload
+    let serialCode = scannedData;
+    const match = scannedData.match(/No Seri:\s*([^\n\r]+)/);
+    if (match && match[1]) {
+      serialCode = match[1].trim();
+    }
+
     setTimeout(() => {
       setScanMessage('Memproses QR Code matrix...');
       
@@ -410,7 +418,7 @@ export default function QrScanTab({
               {/* Real QR code matching individual product */}
               <div className="bg-white p-2 text-slate-800 rounded-lg shadow-sm border border-slate-200 shrink-0 self-center flex items-center justify-center">
                 <QRCodeCanvas
-                  value={scannedAsset.noSeriFinal}
+                  value={generateQrValue(scannedAsset)}
                   size={64}
                   level="H"
                   includeMargin={false}
